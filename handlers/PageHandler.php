@@ -1,7 +1,7 @@
 <?php
 class PageHandler extends AFK_HandlerBase {
 
-	public function on_get_view(AFK_Context $ctx) {
+	public function on_get(AFK_Context $ctx) {
 		global $db;
 		$page = $db->query_row('
 			SELECT	title, content
@@ -9,20 +9,10 @@ class PageHandler extends AFK_HandlerBase {
 			WHERE	slug = %s', $ctx->slug);
 		if (empty($page)) {
 			$page = array('title' => '', 'content' => '');
-			$ctx->header('HTTP/1.1 404 Page Not Found');
-			$ctx->change_view('edit');
-		}
-		$ctx->merge($page);
-	}
-
-	public function on_get_edit(AFK_Context $ctx) {
-		global $db;
-		$page = $db->query_row('
-			SELECT	title, content
-			FROM	pages
-			WHERE	slug = %s', $ctx->slug);
-		if (empty($page)) {
-			$page = array('title' => '', 'content' => '');
+			if ($ctx->view() == 'view') {
+				$ctx->header('HTTP/1.1 404 Page Not Found');
+				$ctx->change_view('edit');
+			}
 		}
 		$ctx->merge($page);
 	}
