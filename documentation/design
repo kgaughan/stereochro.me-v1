@@ -44,3 +44,20 @@ CREATE TABLE weblog (
 	INDEX ix_created (time_c)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+Weblog entry rendering is the most complex part. There are different ways in
+which an entry can be rendered:
+
+Rules:
+
+ 1. If a link is provided, so must be a title if the link is not an embed.
+ 2. At least one of a link or text is required.
+
+Types:
+
+ 1. Video embed (link to YouTube, &c., video).
+ 2. Audio embed (link to MP3 file)
+ 3. Image embed (link to image - link contents will start with 'img' followed
+    by the image's dimensions and URI)
+ 4. Link (link to something, title is required, possible text, possible via)
+ 5. Quote (link to something, no title, text, possible via)
+ 6. Note (no link, possible title, text)
