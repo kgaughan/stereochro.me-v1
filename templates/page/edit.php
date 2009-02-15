@@ -2,7 +2,7 @@
 	<?php if (trim($title) == '') { ?>
 		New page
 	<?php } else { ?>
-		Editing &lsquo;<?php echo SmartyPants(e($title)) ?>&rsquo;
+		Editing &lsquo;<?php echo format_line($title) ?>&rsquo;
 	<?php } ?>
 <?php end_slot() ?>
 <?php include 'edit-form.php' ?>
