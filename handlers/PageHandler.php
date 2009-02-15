@@ -37,14 +37,14 @@ class PageHandler extends AFK_HandlerBase {
 				'content' => $ctx->content,
 				'time_c' => $now,
 				'time_m' => $now,
-				'user_id_c' => 0,
-				'user_id_m' => 0));
+				'user_id_c' => AFK_Users::current()->get_id(),
+				'user_id_m' => AFK_Users::current()->get_id()));
 		} else {
 			$db->execute('
 				UPDATE	pages
-				SET		title = %s, content = %s, time_m = UNIX_TIMESTAMP(NOW())
+				SET		title = %s, content = %s, time_m = UNIX_TIMESTAMP(NOW()), user_id_m = %d
 				WHERE	slug = %s
-				', $ctx->title, $ctx->content, $ctx->slug);
+				', $ctx->title, $ctx->content, $ctx->slug, AFK_Users::current()->get_id());
 		}
 		$ctx->allow_rendering(false);
 		$ctx->redirect();
