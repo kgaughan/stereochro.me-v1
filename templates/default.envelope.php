@@ -23,8 +23,8 @@
 					<li><a href="/about">About</a></li>
 					<li><a href="/weblog/">Weblog</a></li>
 					<li><a href="/projects">Projects</a></li>
-					<?php get_slot('page-navigation') ?>
 					<li><a href="/colophon">Colophon</a></li>
+					<?php get_slot('page-navigation') ?>
 				</ul>
 				<address>
 					Copyright &copy; Keith Gaughan, 2001&#8210;2009.
