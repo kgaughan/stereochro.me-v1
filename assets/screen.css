@@ -152,3 +152,15 @@ form.standard p.required span:before {
 	content: "*";
 	color: red;
 }
+
+div#preview {
+	margin: 1em 0;
+	border: 1px solid #CF9B88;
+	background: white;
+	overflow-y: auto;
+	padding: 1ex;
+}
+div#preview:before {
+	content: "Preview:";
+	font-weight: bold;
+}
