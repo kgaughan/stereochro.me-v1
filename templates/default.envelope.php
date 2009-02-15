@@ -21,6 +21,7 @@
 				<ul id="nav">
 					<li><a href="/">Home</a></li>
 					<li><a href="/about">About</a></li>
+					<li><a href="/weblog/">Weblog</a></li>
 					<li><a href="/projects">Projects</a></li>
 					<?php get_slot('page-navigation') ?>
 					<li><a href="/colophon">Colophon</a></li>

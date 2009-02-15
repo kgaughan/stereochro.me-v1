@@ -12,7 +12,16 @@ define('WITH_LOGGING', STATUS == 'LIVE' || STATUS == 'STAGING');
 
 function routes() {
 	$r = new AFK_Routes(array(
-		'slug' => '[-a-z0-1.]+(?:/[-a-z0-1.]+)?|'));
+		'slug' => '[-a-z0-1.]+(?:/[-a-z0-1.]+)?|',
+		'id' => '[1-9]\d*',
+		'year' => '[2-9]\d{3}',
+		'month' => '0[1-9]|1[0-2]'));
+
+	$r->defaults(array('_handler' => 'Weblog'));
+	$r->route('/weblog/', array('_view' => 'latest'));
+	$r->route('/weblog/;add', array('_view' => 'add'));
+	$r->route('/weblog/{id}', array('_view' => 'entry'));
+	$r->route('/weblog/{year}-{month}', array('_view' => 'month'));
 
 	$r->defaults(array('_handler' => 'Page'));
 	$r->route('/{slug}', array('_view' => 'view'));
