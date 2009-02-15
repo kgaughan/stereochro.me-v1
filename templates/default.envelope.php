@@ -22,8 +22,7 @@
 					<li><a href="/">Home</a></li>
 					<li><a href="/about">About</a></li>
 					<li><a href="/projects">Projects</a></li>
-					<li><a href="/login">Login</a></li>
-					<li><a href="<?php ee($ctx->application_root(), $slug) ?>;edit">Edit</a></li>
+					<?php get_slot('page-navigation') ?>
 					<li><a href="/colophon">Colophon</a></li>
 				</ul>
 				<address>
