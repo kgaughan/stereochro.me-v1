@@ -1,5 +1,5 @@
 <?php start_slot('title') ?>
-	Previewing &lsquo;<?php ee($title) ?>&rsquo;
+	Previewing &lsquo;<?php echo SmartyPants(e($title)) ?>&rsquo;
 <?php end_slot() ?>
 <?php include 'edit-form.php' ?>
-<div id="preview"><?php echo Markdown($content) ?></div>
+<div id="preview"><?php echo SmartyPants(Markdown($content)) ?></div>

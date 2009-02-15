@@ -5,9 +5,9 @@
 	</div>
 
 	<?php if ($note == '') { ?>
-		<p><a href="<?php ee($link) ?>"><?php ee($title) ?></a></p>
+		<p><a href="<?php ee($link) ?>"><?php echo SmartyPants(e($title)) ?></a></p>
 	<?php } else { ?>
-		<h1><a href="<?php ee($link) ?>"><?php ee($title) ?></a></h1>
-		<?php echo Markdown($note) ?>
+		<h1><a href="<?php ee($link) ?>"><?php echo SmartyPants(e($title)) ?></a></h1>
+		<?php echo SmartyPants(Markdown($note)) ?>
 	<?php } ?>
 </div>
