@@ -17,7 +17,7 @@
 		</div>
 		<div id="outer2">
 			<div id="footer">
-				<hr/>
+				<hr>
 				<ul id="nav">
 					<li><a href="/">Home</a></li>
 					<li><a href="/about">About</a></li>
