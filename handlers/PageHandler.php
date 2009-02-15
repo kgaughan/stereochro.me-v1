@@ -3,13 +3,15 @@ class PageHandler extends AFK_HandlerBase {
 
 	public function on_get(AFK_Context $ctx) {
 		global $db;
+
+		if ($ctx->view() == 'edit') {
+			AFK_Users::prerequisites('edit');
+		}
+
 		$page = $db->query_row('
 			SELECT	title, content
 			FROM	pages
 			WHERE	slug = %s', $ctx->slug);
-		if ($ctx->view() == 'edit') {
-			AFK_Users::prerequisites('edit');
-		}
 		if (empty($page)) {
 			$page = array('title' => '', 'content' => '');
 			if ($ctx->view() == 'edit' && AFK_Users::current()->is_logged_in()) {
@@ -24,7 +26,10 @@ class PageHandler extends AFK_HandlerBase {
 
 	public function on_put_view(AFK_Context $ctx) {
 		global $db;
-		if ($db->query_value("SELECT COUNT(*) FROM pages WHERE slug = %s", $ctx->slug) == 0) {
+
+		AFK_Users::prerequisites('edit');
+
+		if ($db->query_value('SELECT COUNT(*) FROM pages WHERE slug = %s', $ctx->slug) == 0) {
 			$now = time();
 			$db->insert('pages', array(
 				'slug' => $ctx->slug,
@@ -35,13 +40,13 @@ class PageHandler extends AFK_HandlerBase {
 				'user_id_c' => 0,
 				'user_id_m' => 0));
 		} else {
-			$db->execute("
+			$db->execute('
 				UPDATE	pages
 				SET		title = %s, content = %s, time_m = UNIX_TIMESTAMP(NOW())
 				WHERE	slug = %s
-				", $ctx->title, $ctx->content, $ctx->slug);
+				', $ctx->title, $ctx->content, $ctx->slug);
 		}
-		$ctx->allow_rendering();
+		$ctx->allow_rendering(false);
 		$ctx->redirect();
 	}
 }
