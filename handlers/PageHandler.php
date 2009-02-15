@@ -1,5 +1,5 @@
 <?php
-class RootHandler extends AFK_HandlerBase {
+class PageHandler extends AFK_HandlerBase {
 
 	public function on_get_view(AFK_Context $ctx) {
 		global $db;

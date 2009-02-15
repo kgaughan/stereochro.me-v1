@@ -17,7 +17,7 @@ function routes() {
 	$r->defaults(array('_handler' => 'User'));
 	$r->route('/login', array('_view' => 'login'));
 
-	$r->defaults(array('_handler' => 'Root'));
+	$r->defaults(array('_handler' => 'Page'));
 	$r->route('/{slug}', array('_view' => 'view'));
 	$r->route('/{slug};edit', array('_view' => 'edit'));
 
