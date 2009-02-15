@@ -64,7 +64,7 @@ h1 a {
 	text-decoration: none;
 	color: #903618;
 }
-h1 + p {
+h1 + p, h1 + form {
 	margin-top: -0.25em;
 	padding-top: 1em;
 }
