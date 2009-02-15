@@ -7,11 +7,16 @@ class PageHandler extends AFK_HandlerBase {
 			SELECT	title, content
 			FROM	pages
 			WHERE	slug = %s', $ctx->slug);
+		if ($ctx->view() == 'edit') {
+			AFK_Users::prerequisites('edit');
+		}
 		if (empty($page)) {
 			$page = array('title' => '', 'content' => '');
-			if ($ctx->view() == 'view') {
+			if ($ctx->view() == 'edit' && AFK_Users::current()->is_logged_in()) {
 				$ctx->header('HTTP/1.1 404 Page Not Found');
 				$ctx->change_view('edit');
+			} else {
+				$ctx->not_found();
 			}
 		}
 		$ctx->merge($page);

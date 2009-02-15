@@ -14,9 +14,6 @@ function routes() {
 	$r = new AFK_Routes(array(
 		'slug' => '[-a-z0-1.]+(?:/[-a-z0-1.]+)?|'));
 
-	$r->defaults(array('_handler' => 'User'));
-	$r->route('/login', array('_view' => 'login'));
-
 	$r->defaults(array('_handler' => 'Page'));
 	$r->route('/{slug}', array('_view' => 'view'));
 	$r->route('/{slug};edit', array('_view' => 'edit'));
@@ -40,6 +37,8 @@ function init() {
 	// If you need output caching, you'll need this:
 	// AFK::load_helper('cache');
 	// cache_install(new AFK_Cache_DB($db, 'cache'));
+
+	AFK_Users::set_implementation(new Users('talideon.com'));
 
 	return array();
 }
