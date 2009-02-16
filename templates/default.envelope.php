@@ -8,6 +8,7 @@
 		</title>
 		<?php favicon() ?>
 		<?php stylesheets(array('screen', 'print')) ?>
+		<?php get_slot('head') ?>
 	</head>
 	<body>
 		<div id="outer1">

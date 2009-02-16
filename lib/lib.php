@@ -4,7 +4,10 @@ function get_entry_type($link, $title, $via, $note) {
 }
 
 function format($text) {
-	return SmartyPants(Markdown($text));
+	return str_replace(
+		array('<pre><code>', '<hr />'),
+		array('<pre class="prettyprint"><code>', '<div class="hr"><hr></div>'),
+		SmartyPants(Markdown($text)));
 }
 
 function format_line($text) {
