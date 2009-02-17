@@ -177,20 +177,24 @@ div#preview:before {
 	overflow: hidden;
 }
 .entry + .entry {
-	margin-bottom: 1em;
+	margin-top: 1ex;
 }
 .entry .meta {
-	position: absolute;
-	left: 0;
+	float: left;
+	margin-left: -9em;
 	width: 8em;
-	font-size: small;
+	font-size: 80%;
 	color: #CF9B88;
+	text-align: right;
 }
 .entry .meta a {
 	color: inherit;
 	text-decoration: none;
 }
 .entry:hover .meta a {
-	color: black;
+	color: #903618;
 	text-decoration: underline;
+}
+.meta + h2 {
+	margin-top: 0;
 }
