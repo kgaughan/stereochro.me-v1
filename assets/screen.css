@@ -64,7 +64,7 @@ h1 a {
 	text-decoration: none;
 	color: #903618;
 }
-h1 + p, h1 + form {
+h1 + p, h1 + form, h1 + div {
 	margin-top: -0.25em;
 	padding-top: 1em;
 }
@@ -169,4 +169,28 @@ div#preview:before {
 	font-size: small;
 	text-align: right;
 	color: #CF9B88;
+}
+
+.entry {
+	padding-left: 8em;
+	position: relative;
+	overflow: hidden;
+}
+.entry + .entry {
+	margin-bottom: 1em;
+}
+.entry .meta {
+	position: absolute;
+	left: 0;
+	width: 8em;
+	font-size: small;
+	color: #CF9B88;
+}
+.entry .meta a {
+	color: inherit;
+	text-decoration: none;
+}
+.entry:hover .meta a {
+	color: black;
+	text-decoration: underline;
 }

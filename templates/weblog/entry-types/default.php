@@ -1,13 +1,10 @@
 <div class="entry">
 	<div class="meta">
-		<a href="/weblog/<?php echo $id ?>">&para;</a>
-		&middot;
+		<a href="/weblog/<?php echo $id ?>"><?php ee(date(WEBLOG_DATE, $time_c)) ?></a>
 	</div>
 
-	<?php if ($note == '') { ?>
-		<p><a href="<?php ee($link) ?>"><?php echo format_line($title) ?></a></p>
-	<?php } else { ?>
-		<h1><a href="<?php ee($link) ?>"><?php echo format_line($title) ?></a></h1>
+	<p><a href="<?php ee($link) ?>"><?php echo format_line($title) ?></a></p>
+	<?php if ($note != '') { ?>
 		<?php echo format($note) ?>
 	<?php } ?>
 </div>
