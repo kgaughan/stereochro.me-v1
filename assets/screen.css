@@ -45,8 +45,13 @@ ul#breadcrumbs li + li:before {
 	font-weight: bold;
 }
 h1 {
-	margin: 0;
 	line-height: 1;
+}
+h2 {
+	line-height: 1.1;
+}
+h1, h2 {
+	margin: 0;
 }
 h1, h2, h3, h4, h5, h6 {
 	font-weight: normal;
@@ -64,12 +69,14 @@ h1 a {
 	text-decoration: none;
 	color: #903618;
 }
-h1 + p, h1 + form, h1 + div {
+h1 + p, h1 + form, h1 + div,
+h2 + p, h2 + form, h2 + div {
 	margin-top: -0.25em;
 	padding-top: 1em;
 }
-p + h1, div + h1, ul + h1, ol + h1 {
-	margin-top: 1ex;
+p + h1, div + h1, ul + h1, ol + h1,
+p + h2, div + h2, ul + h2, ol + h2 {
+	margin-top: 1.5ex;
 }
 h1 .date {
 	font-size: 40%;
@@ -170,14 +177,15 @@ div#preview:before {
 	text-align: right;
 	color: #CF9B88;
 }
-
 .entry {
 	padding-left: 8em;
 	position: relative;
 	overflow: hidden;
 }
 .entry + .entry {
-	margin-top: 1ex;
+	margin-top: 4ex;
+	padding-top: 1ex;
+	border-top: 1px solid #CF9B88;
 }
 .entry .meta {
 	float: left;
