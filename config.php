@@ -5,6 +5,8 @@ if (file_exists(APP_ROOT . '/site-config.php')) {
 	require(APP_ROOT . '/deployment/configurations/default.php');
 }
 
+define('DATE_FORMAT', 'H:i \o\n F jS Y');
+
 function routes() {
 	$r = new AFK_Routes(array(
 		'slug' => '[-a-z0-1.]+(?:/[-a-z0-1.]+)?|',

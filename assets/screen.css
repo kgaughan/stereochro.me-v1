@@ -163,3 +163,10 @@ div#preview:before {
 	content: "Preview:";
 	font-weight: bold;
 }
+
+#metadata {
+	margin-top: 2em;
+	font-size: small;
+	text-align: right;
+	color: #CF9B88;
+}

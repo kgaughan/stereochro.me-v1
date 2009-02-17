@@ -9,7 +9,7 @@ class PageHandler extends AFK_HandlerBase {
 		}
 
 		$page = $db->query_row('
-			SELECT title, content
+			SELECT title, content, time_c, time_m
 			FROM   pages
 			WHERE  slug = %s', $ctx->slug);
 		if (empty($page)) {
