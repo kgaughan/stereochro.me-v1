@@ -1,5 +1,5 @@
 <?php
-class TimingFilter implements AFK_Filter {
+class ProfilingFilter implements AFK_Filter {
 
 	public function execute(AFK_Pipeline $pipe, $ctx) {
 		$start = microtime(true);
