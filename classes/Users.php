@@ -8,10 +8,6 @@ class Users extends AFK_HttpAuthUsers {
 			$username, $hash);
 	}
 
-	protected function get_anonymous_user() {
-		return new AFK_User(AFK_Users::ANONYMOUS, 'An Anonymous Hero');
-	}
-
 	protected function load(array $ids) {
 		global $db;
 		$db->query("SELECT id, uname FROM users WHERE id IN (%d)", $ids);
