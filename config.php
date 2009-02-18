@@ -39,5 +39,5 @@ function init() {
 
 	AFK_Users::set_implementation(new Users('talideon.com'));
 
-	return array(new TimingFilter());
+	return array(new ProfilingFilter());
 }
