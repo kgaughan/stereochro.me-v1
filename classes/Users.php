@@ -1,11 +1,9 @@
 <?php
 class Users extends AFK_HttpAuthUsers {
 
-	protected function authenticate($username, $hash) {
+	protected function authenticate($username) {
 		global $db;
-		return $db->query_value(
-			"SELECT id FROM users WHERE uname = %s AND pwd = %s",
-			$username, $hash);
+		return $db->query_tuple("SELECT id, pwd FROM users WHERE uname = %s", $username);
 	}
 
 	protected function load(array $ids) {

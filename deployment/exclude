@@ -2,8 +2,8 @@
 .*.sw?
 *.xcf
 .svn
+.bzr
 .htaccess
-sync
 tests
 deployment
 documentation

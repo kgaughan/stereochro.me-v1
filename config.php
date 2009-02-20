@@ -37,7 +37,9 @@ function init() {
 
 	$db = new DB_MySQL(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
-	AFK_Users::set_implementation(new Users('talideon.com'));
+	AFK_Users::set_implementation(new Users());
+	AFK_HttpAuth::set_realm('talideon.com');
+	AFK_HttpAuth::add_method(new AFK_HttpAuth_Basic());
 
 	return array(new ProfilingFilter());
 }
