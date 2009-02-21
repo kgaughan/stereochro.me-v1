@@ -19,6 +19,7 @@ function routes() {
 	$r->route('/weblog/', array('_view' => 'latest'));
 	$r->route('/weblog/;add', array('_view' => 'add'));
 	$r->route('/weblog/{id}', array('_view' => 'entry'));
+	$r->route('/weblog/{id};edit', array('_view' => 'edit'));
 	$r->route('/weblog/{year}-{month}', array('_view' => 'month'));
 
 	$r->defaults(array('_handler' => 'Page'));
@@ -33,7 +34,7 @@ function init() {
 
 	error_reporting(E_ALL);
 	date_default_timezone_set('UTC');
-	AFK::load_helper('core', 'html', 'slots', 'markdown', 'smartypants');
+	AFK::load_helper('core', 'forms', 'html', 'slots', 'markdown', 'smartypants');
 
 	$db = new DB_MySQL(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
