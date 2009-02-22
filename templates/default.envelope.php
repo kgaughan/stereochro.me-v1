@@ -19,6 +19,7 @@
 		<div id="outer2">
 			<div id="footer">
 				<hr>
+				<?php get_slot('section-navigation') ?>
 				<ul id="nav">
 					<li><a href="/">Home</a></li>
 					<li><a href="/about">About</a></li>
