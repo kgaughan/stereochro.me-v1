@@ -42,5 +42,5 @@ function init() {
 	AFK_HttpAuth::set_realm('talideon.com');
 	AFK_HttpAuth::add_method(new AFK_HttpAuth_Basic());
 
-	return array(new ProfilingFilter());
+	return array();
 }
