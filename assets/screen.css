@@ -183,7 +183,7 @@ div#preview:before {
 	color: #CF9B88;
 }
 .entry {
-	padding-left: 8em;
+	padding-left: 2em;
 	position: relative;
 	overflow: hidden;
 }
@@ -194,11 +194,13 @@ div#preview:before {
 }
 .entry .meta {
 	float: left;
-	margin-left: -9em;
-	width: 8em;
-	font-size: 80%;
+	margin-left: -1em;
+	width: 1em;
+	font-size: 200%;
+	font-weight: bold;
 	color: #CF9B88;
-	text-align: right;
+	text-align: left;
+	line-height: 1.0;
 }
 .entry .meta a {
 	color: inherit;
