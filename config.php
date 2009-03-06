@@ -37,6 +37,7 @@ function init() {
 	AFK::load_helper('core', 'forms', 'html', 'slots', 'markdown', 'smartypants');
 
 	$db = new DB_MySQL(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+	$db->set_cache(new AFK_Cache_DB($db, 'query_cache'));
 
 	AFK_Users::set_implementation(new Users());
 	AFK_HttpAuth::set_realm('talideon.com');

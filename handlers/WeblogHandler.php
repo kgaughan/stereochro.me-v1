@@ -5,7 +5,7 @@ class WeblogHandler extends AFK_HandlerBase {
 		global $db;
 
 		$ctx->archive_summary = $this->get_archive_summary();
-		$ctx->entries = $db->query_all('
+		$ctx->entries = $db->cached_query_all(300, '
 			SELECT   id, time_c, link, title, via, note
 			FROM     weblog
 			ORDER BY time_c DESC
@@ -120,7 +120,7 @@ class WeblogHandler extends AFK_HandlerBase {
 	private function get_archive_summary() {
 		global $db;
 
-		return $db->query_all('
+		return $db->cached_query_all(600, '
 			SELECT   MIN(time_c) AS ts, COUNT(*) AS n
 			FROM     weblog
 			GROUP BY YEAR(FROM_UNIXTIME(time_c)) DESC,
