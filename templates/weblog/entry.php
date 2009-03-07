@@ -5,6 +5,7 @@ $this->render('edit-links', array(
 
 if (cache('weblog:' . $id)) {
 	include 'entry-body.php';
+	include 'entry-footer.php';
 	cache_end();
 }
 ?>

@@ -8,9 +8,8 @@
 	<?php echo format($content) ?>
 
 	<div id="metadata">
-		Created at <?php ee(date(PAGE_DATE, $time_c)) ?>
-		<?php if ($time_c != $time_m) { ?>
-		; last modified at <?php ee(date(PAGE_DATE, $time_m)) ?>
+		Created at <?php ee(date(PAGE_DATE, $time_c)) ?><?php if ($time_c != $time_m) { ?>;
+		last modified at <?php ee(date(PAGE_DATE, $time_m)) ?>
 		<?php } ?>
 	</div>
 <?php cache_end(); } ?>
