@@ -2,20 +2,19 @@
 class WeblogHandler extends AFK_HandlerBase {
 
 	public function on_get_latest(AFK_Context $ctx) {
-		global $db;
-		$ctx->defaults(array('as' => 'html'));
-
-		$ctx->entries = WeblogData::get_latest_entries();
 	}
 
 	public function on_post_latest(AFK_Context $ctx) {
 		AFK_Users::prerequisites('edit');
 
-		$n = WeblogData::new_entry(
+		$id = WeblogData::new_entry(
 			$ctx->link, $ctx->title, $ctx->via, $ctx->note,
 			AFK_Users::current()->get_id());
 		if (is_null($id)) {
 			add_notification('error', "That link already appears to exist!");
+		} else {
+			cache_remove('weblog:latest');
+			cache_remove('weblog:summary');
 		}
 
 		$ctx->allow_rendering(false);
@@ -30,6 +29,8 @@ class WeblogHandler extends AFK_HandlerBase {
 			WeblogData::update_entry(
 				$ctx->id, $ctx->link, $ctx->title, $ctx->via, $ctx->note,
 				AFK_Users::current()->get_id());
+			cache_remove('weblog:latest');
+			cache_remove('weblog:' . $id);
 			$ctx->allow_rendering(false);
 			$ctx->redirect();
 		}
@@ -41,7 +42,10 @@ class WeblogHandler extends AFK_HandlerBase {
 	}
 
 	public function on_get_entry(AFK_Context $ctx) {
-		$ctx->merge_or_not_found(WeblogData::get_entry($ctx->id));
+		$entry = WeblogData::get_entry($ctx->id);
+		if (is_null($entry) || !$ctx->try_not_modified($entry['time_m'])) {
+			$ctx->merge_or_not_found($entry);
+		}
 	}
 
 	public function on_get_edit(AFK_Context $ctx) {

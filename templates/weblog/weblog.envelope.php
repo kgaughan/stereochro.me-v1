@@ -1,6 +1,13 @@
 <?php
 $this->with_envelope();
-$this->render_each('archive-summary', WeblogData::get_archive_summary());
+
+start_slot('section-navigation');
+if (cache('weblog:summary')) {
+	$archive_summary = WeblogData::get_archive_summary();
+	$this->render_each('archive-summary', $archive_summary);
+	cache_end();
+}
+end_slot();
 ?>
 <?php start_slot('head') ?>
 	<link title="Feed" rel="alternate" href="/weblog/;feed" type="application/atom+xml">

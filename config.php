@@ -38,7 +38,6 @@ function init() {
 	AFK::load_helper('core', 'forms', 'html', 'slots', 'markdown', 'smartypants', 'cache');
 
 	$db = new DB_MySQL(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-	$db->set_cache(new AFK_Cache_DB($db, 'query_cache'));
 
 	$cache = new AFK_Cache_DB($db, 'output_cache');
 	cache_install($cache);

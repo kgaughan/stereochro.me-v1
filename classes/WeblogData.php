@@ -32,11 +32,21 @@ class WeblogData {
 			', $link, $title, $via, $note, $user_id, $id);
 	}
 
-	public static function get_latest_entries() {
+	public static function get_latest_feed_entries($since) {
 		global $db;
 
 		return $db->cached_query_all(300, '
-			SELECT   id, time_c, link, title, via, note
+			SELECT   id, time_m, time_c, link, title, via, note
+			FROM     weblog
+			ORDER BY time_m DESC
+			LIMIT    20');
+	}
+
+	public static function get_latest_entries() {
+		global $db;
+
+		return $db->query_all('
+			SELECT   id, time_c, time_m, link, title, via, note
 			FROM     weblog
 			ORDER BY time_c DESC
 			LIMIT    20');
@@ -60,7 +70,7 @@ class WeblogData {
 		global $db;
 
 		return $db->query_row('
-			SELECT id, time_c, link, title, via, note
+			SELECT id, time_c, time_m, link, title, via, note
 			FROM   weblog
 			WHERE  id = %d
 			', $id);
@@ -69,7 +79,7 @@ class WeblogData {
 	public static function get_archive_summary() {
 		global $db;
 
-		return $db->cached_query_all(600, '
+		return $db->query_all('
 			SELECT   MIN(time_c) AS ts, COUNT(*) AS n
 			FROM     weblog
 			GROUP BY YEAR(FROM_UNIXTIME(time_c)) DESC,

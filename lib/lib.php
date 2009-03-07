@@ -1,8 +1,4 @@
 <?php
-function get_entry_type($link, $title, $via, $note) {
-	return 'default';
-}
-
 function format($text) {
 	return str_replace(
 		array('<pre><code>', '<hr />'),
