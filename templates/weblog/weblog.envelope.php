@@ -1,8 +1,6 @@
 <?php
 $this->with_envelope();
-if (isset($archive_summary)) {
-	$this->render_each('archive-summary', $archive_summary);
-}
+$this->render_each('archive-summary', WeblogData::get_archive_summary());
 ?>
 <?php start_slot('page-navigation') ?>
 	<li><a href="/weblog/;add">Add</a></li>
