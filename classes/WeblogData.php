@@ -32,10 +32,10 @@ class WeblogData {
 			', $link, $title, $via, $note, $user_id, $id);
 	}
 
-	public static function get_latest_feed_entries($since) {
+	public static function get_latest_feed_entries() {
 		global $db;
 
-		return $db->cached_query_all(300, '
+		return $db->query_all('
 			SELECT   id, time_m, time_c, link, title, via, note
 			FROM     weblog
 			ORDER BY time_m DESC
