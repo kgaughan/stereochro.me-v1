@@ -1,14 +1,19 @@
 <?php $ctx->header('Content-Type: text/html; charset=utf-8') ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" dir="ltr">
 	<head>
 		<title>
 			<?php if (get_slot('title')) { ?> - <?php } ?>Talideon.com
 		</title>
-		<?php favicon() ?>
-		<?php stylesheets(array('screen', 'print')) ?>
-		<?php get_slot('head') ?>
+		<?php
+		favicon();
+		// CSS naked day.
+		if (date('dm') != '0504') {
+			stylesheets(array('screen', 'print'));
+		}
+		get_slot('head');
+		?>
 	</head>
 	<body>
 		<div id="outer1">
@@ -29,11 +34,19 @@
 					<?php get_slot('page-navigation') ?>
 				</ul>
 				<address>
-					Copyright &copy; Keith Gaughan, 2001&#8210;2009.
+					Copyright &copy; Keith Gaughan, 2001&#8210;<?php echo date('Y') ?>.
 					All Rights Reserved.
 					You can stop reading now.
 				</address>
 			</div>
 		</div>
+
+		<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+		</script>
+		<script type="text/javascript">
+		_uacct = "UA-2914483-1";
+		urchinTracker();
+		</script>
+
 	</body>
 </html>
