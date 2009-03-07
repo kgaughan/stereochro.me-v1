@@ -197,7 +197,6 @@ div#preview:before {
 	margin-left: -1em;
 	width: 1em;
 	font-size: 200%;
-	font-weight: bold;
 	color: #CF9B88;
 	text-align: left;
 	line-height: 1.0;
@@ -208,7 +207,6 @@ div#preview:before {
 }
 .entry:hover .meta a {
 	color: #903618;
-	text-decoration: underline;
 }
 .meta + h2 {
 	margin-top: 0;

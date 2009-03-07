@@ -3,6 +3,7 @@ class WeblogHandler extends AFK_HandlerBase {
 
 	public function on_get_latest(AFK_Context $ctx) {
 		global $db;
+		$ctx->defaults(array('as' => 'html'));
 
 		$ctx->archive_summary = $this->get_archive_summary();
 		$ctx->entries = $db->cached_query_all(300, '
@@ -46,6 +47,7 @@ class WeblogHandler extends AFK_HandlerBase {
 
 	public function on_get_entry(AFK_Context $ctx) {
 		$ctx->merge_or_not_found($this->get_entry($ctx->id));
+		$ctx->archive_summary = $this->get_archive_summary();
 	}
 
 	public function on_get_edit(AFK_Context $ctx) {

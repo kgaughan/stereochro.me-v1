@@ -5,8 +5,7 @@ if (file_exists(APP_ROOT . '/site-config.php')) {
 	require(APP_ROOT . '/deployment/configurations/default.php');
 }
 
-define('PAGE_DATE', 'H:i \o\n F jS Y');
-define('WEBLOG_DATE', 'Y-m-d H:i');
+define('PAGE_DATE', 'H:i \o\n F jS, Y');
 
 function routes() {
 	$r = new AFK_Routes(array(
