@@ -6,6 +6,12 @@
 		<title>
 			<?php if (get_slot('title')) { ?> - <?php } ?>Talideon.com
 		</title>
+
+		<?php if ($ctx->REQUEST_URI == '/') { ?>
+			<link rel="openid.server" href="http://talideon.com/id/">
+			<link rel="openid.delegate" href="http://talideon.com/id/">
+		<?php } ?>
+
 		<?php
 		favicon();
 		// CSS naked day.

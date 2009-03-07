@@ -1,6 +1,7 @@
 RewriteEngine On
 RewriteBase /
 RewriteRule ^assets/.*         -                [L]
+RewriteRule ^id/.*             -                [L]
 RewriteRule ^favicon\.ico      -                [L]
 RewriteRule ^robots\.txt       -                [L]
 RewriteRule ^dispatch\.php/.*  -                [L]
