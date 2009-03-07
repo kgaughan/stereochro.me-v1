@@ -15,6 +15,8 @@ class PageHandler extends AFK_HandlerBase {
 			} else {
 				$ctx->not_found();
 			}
+		} elseif ($ctx->try_not_modified(md5($page['content']))) {
+			return;
 		}
 		$ctx->merge($page);
 	}
@@ -25,6 +27,7 @@ class PageHandler extends AFK_HandlerBase {
 			$ctx->change_view('preview');
 		} else {
 			PageData::save($ctx->slug, $ctx->title, $ctx->content, AFK_Users::current()->get_id());
+			cache_remove('page:' . $ctx->REQUEST_URI);
 			$ctx->allow_rendering(false);
 			$ctx->redirect();
 		}

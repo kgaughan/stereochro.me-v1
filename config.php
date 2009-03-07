@@ -16,6 +16,7 @@ function routes() {
 
 	$r->defaults(array('_handler' => 'Weblog'));
 	$r->route('/weblog/', array('_view' => 'latest'));
+	$r->route('/weblog/;feed', array('_view' => 'feed'));
 	$r->route('/weblog/;add', array('_view' => 'add'));
 	$r->route('/weblog/{id}', array('_view' => 'entry'));
 	$r->route('/weblog/{id};edit', array('_view' => 'edit'));
@@ -30,13 +31,17 @@ function routes() {
 
 function init() {
 	global $db;
+	global $cache;
 
 	error_reporting(E_ALL);
 	date_default_timezone_set('UTC');
-	AFK::load_helper('core', 'forms', 'html', 'slots', 'markdown', 'smartypants');
+	AFK::load_helper('core', 'forms', 'html', 'slots', 'markdown', 'smartypants', 'cache');
 
 	$db = new DB_MySQL(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 	$db->set_cache(new AFK_Cache_DB($db, 'query_cache'));
+
+	$cache = new AFK_Cache_DB($db, 'output_cache');
+	cache_install($cache);
 
 	AFK_Users::set_implementation(new Users());
 	AFK_HttpAuth::set_realm('talideon.com');
