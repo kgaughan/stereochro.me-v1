@@ -35,7 +35,9 @@ class WeblogHandler extends AFK_HandlerBase {
 				$entry = $root->entry();
 				$entry->title(empty($e['title']) ? 'Untitled' : $e['title']);
 				$entry->published(date('c', $e['time_c']));
-				$entry->updated(date('c', $e['time_m']));
+				if ($e['time_m'] != $e['time_c']) {
+					$entry->updated(date('c', $e['time_m']));
+				}
 				$entry->id('tag:talideon.com,2001:weblog:' . $e['id']);
 
 				$entry_link = $ctx->application_root() . 'weblog/' . $e['id'];
@@ -58,7 +60,7 @@ class WeblogHandler extends AFK_HandlerBase {
 				}
 
 				if (trim($e['note']) != '') {
-					$content = $entry->content(format($e['note']));
+					$content = $entry->content(trim(format($e['note'])));
 					$content->type = 'html';
 					$content->attr('xml:lang', 'en')->attr('xml:base', $entry_link);
 				}
@@ -94,7 +96,7 @@ class WeblogHandler extends AFK_HandlerBase {
 				$ctx->id, $ctx->link, $ctx->title, $ctx->via, $ctx->note,
 				AFK_Users::current()->get_id());
 			cache_remove('weblog:latest');
-			cache_remove('weblog:' . $id);
+			cache_remove('weblog:' . $ctx->id);
 			$ctx->allow_rendering(false);
 			$ctx->redirect();
 		}
