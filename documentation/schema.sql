@@ -36,5 +36,15 @@ CREATE TABLE weblog (
 
 	PRIMARY KEY (id),
 	UNIQUE INDEX ux_link (link),
-	INDEX ix_created (time_c)
+	INDEX ix_created (time_c),
+	INDEX ix_modified (time_m)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE output_cache (
+	id   CHAR(32)         NOT NULL,
+	ts   INTEGER UNSIGNED NOT NULL,
+	data TEXT             NOT NULL,
+
+	PRIMARY KEY (id),
+	INDEX ix_timestamp (ts)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
