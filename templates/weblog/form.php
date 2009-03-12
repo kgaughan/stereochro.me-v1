@@ -11,7 +11,7 @@
 <textarea name="note" rows="8"><?php ee($note) ?></textarea></label></p>
 <p>
 <?php carry_hidden_values('time_c') ?>
-<input type="hidden" name="_method" value="put">
+<input type="hidden" name="_method" value="<?php echo isset($ctx->time_c) ? 'PUT' : 'POST' ?>">
 <input type="submit" value="Post entry">
 <input type="submit" name="preview" value="Preview">
 </p>
