@@ -35,20 +35,18 @@ class WeblogHandler extends AFK_HandlerBase {
 				$entry = $root->entry();
 				$entry->title(empty($e['title']) ? 'Untitled' : $e['title']);
 				$entry->published(date('c', $e['time_c']));
-				if ($e['time_m'] != $e['time_c']) {
-					$entry->updated(date('c', $e['time_m']));
-				}
+				$entry->updated(date('c', $e['time_m']));
 				$entry->id('tag:talideon.com,2001:weblog:' . $e['id']);
 
 				$entry_link = $ctx->application_root() . 'weblog/' . $e['id'];
 
 				$link = $entry->link();
-				$link->rel = 'self';
+				$link->rel = 'alternate';
 				$link->type = 'text/html';
 				$link->href = $entry_link;
 
 				$link = $entry->link();
-				$link->rel = 'alternate';
+				$link->rel = 'related';
 				$link->type = 'text/html';
 				$link->href = empty($e['link']) ? $entry_link : $e['link'];
 
