@@ -12,6 +12,18 @@
 			<link rel="openid.delegate" href="http://talideon.com/id/">
 		<?php } ?>
 
+		<meta name="MSSmartTagsPreventParsing" content="true">
+		<meta name="Author" content="Keith Gaughan">
+		<meta name="Copyright" content="Copyright (c) Keith Gaughan, 2001-<?php echo date('Y') ?>">
+
+		<meta name="ICBM" content="54.0333, -8.9000">
+		<meta name="geo.position" content="54.0333;-8.9000">
+		<meta name="geo.region" content="IE-SO">
+		<meta name="geo.placename" content="Aclare">
+
+		<link rel="blogroll" type="text/x-opml" title="Blogroll" href="http://bloglines.com/export?id=Keith">
+		<link rel="subscriptions" type="text/x-opml" title="Subscriptions" href="http://bloglines.com/export?id=Keith">
+
 		<?php
 		favicon();
 		// CSS naked day.
