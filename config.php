@@ -43,8 +43,8 @@ function init() {
 	cache_install($cache);
 
 	AFK_Users::set_implementation(new Users());
-	AFK_HttpAuth::set_realm('talideon.com');
-	AFK_HttpAuth::add_method(new AFK_HttpAuth_Basic());
+	AFK_HttpAuthUsers::set_realm('talideon.com');
+	AFK_HttpAuthUsers::add_method(new AFK_HttpAuth_Basic());
 
 	return array();
 }
