@@ -7,11 +7,27 @@
 		<h2><?php echo format_line($title) ?></h2>
 	<?php } ?>
 
-	<?php if (preg_match('~^http://www.youtube.com/watch\?v=([A-Za-z0-9_]{11,})~', $link, $matches)) { ?>
+	<?php if (preg_match('~^http://(?:www\.)?youtube\.com/watch\?v=([A-Za-z0-9_]{11,})~', $link, $matches)) { ?>
 		<?php $movie_url = "http://www.youtube.com/v/{$matches[1]}&rel=1" ?>
 		<div class="illustration">
 		<object width="425" height="355" type="application/x-shockwave-flash" data="<?php ee($movie_url) ?>">
 		<param name="movie" value="<?php ee($movie_url) ?>">
+		</object>
+		</div>
+	<?php } elseif (preg_match('~^http://video\.google\.com/videoplay\?docid=(-?\d+)~', $link, $matches)) { ?>
+		<?php $movie_url = "http://video.google.com/googleplayer.swf?hl=en&docId=" . $matches[1] ?>
+		<div class="illustration">
+		<object width="400" height="326" type="application/x-shockwave-flash" data="<?php ee($movie_url) ?>">
+		<param name="movie" value="<?php ee($movie_url) ?>">
+		<param name="FlashVars" value="playerMode=embedded">
+		</object>
+		</div>
+	<?php } elseif (preg_match('~^http://(?:www\.)vimeo\.com/(\d+)~', $link, $matches)) { ?>
+		<?php $movie_url = "http://www.vimeo.com/moogaloop.swf?clip_id=" . $matches[1] ?>
+		<div class="illustration">
+		<object width="400" height="300" type="application/x-shockwave-flash" data="<?php ee($movie_url) ?>">
+		<param name="movie" value="<?php ee($movie_url) ?>">
+		<param name="FlashVars" value="quality=best&scale=exactfit">
 		</object>
 		</div>
 	<?php } ?>
