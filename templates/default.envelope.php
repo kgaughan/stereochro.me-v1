@@ -28,7 +28,7 @@
 		favicon();
 		// CSS naked day.
 		if (date('dm') != '0504') {
-			stylesheets(array('screen' => array('screen', 'prettify'), 'print'));
+			stylesheets(array('screen' => array('prettify', 'screen'), 'print'));
 		}
 		get_slot('head');
 		?>
