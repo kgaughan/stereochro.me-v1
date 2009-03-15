@@ -28,7 +28,7 @@
 		favicon();
 		// CSS naked day.
 		if (date('dm') != '0504') {
-			stylesheets(array('screen', 'print'));
+			stylesheets(array('screen' => array('screen', 'prettify'), 'print'));
 		}
 		get_slot('head');
 		?>
@@ -59,12 +59,12 @@
 			</div>
 		</div>
 
-		<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
-		</script>
+		<?php javascript(array('prettify')) ?>
+		<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
 		<script type="text/javascript">
 		_uacct = "UA-2914483-1";
 		urchinTracker();
+		prettyPrint();
 		</script>
-
 	</body>
 </html>
