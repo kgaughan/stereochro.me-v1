@@ -80,7 +80,7 @@ class WeblogData {
 		global $db;
 
 		return $db->query_all('
-			SELECT   MIN(time_c) AS ts, COUNT(*) AS n
+			SELECT   MAX(time_c) AS ts, COUNT(*) AS n
 			FROM     weblog
 			GROUP BY YEAR(FROM_UNIXTIME(time_c)) DESC,
 			         MONTH(FROM_UNIXTIME(time_c)) DESC');

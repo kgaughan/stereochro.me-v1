@@ -44,7 +44,7 @@ function init() {
 
 	AFK_Users::set_implementation(new Users());
 	AFK_HttpAuthUsers::set_realm('talideon.com');
-	AFK_HttpAuthUsers::add_method(new AFK_HttpAuth_Basic());
+	AFK_HttpAuthUsers::add_method(new AFK_HttpAuth_Digest('fdsaf rreq $vcxe~@', 'MFFH54gsbgdkjhgsr42'));
 
 	return array();
 }
