@@ -71,18 +71,21 @@ class WeblogHandler extends AFK_HandlerBase {
 	public function on_post_latest(AFK_Context $ctx) {
 		AFK_Users::prerequisites('edit');
 
-		$id = WeblogData::new_entry(
-			$ctx->link, $ctx->title, $ctx->via, $ctx->note,
-			AFK_Users::current()->get_id());
-		if (is_null($id)) {
-			add_notification('error', "That link already appears to exist!");
+		if (isset($ctx->preview)) {
+			$ctx->change_view('preview');
 		} else {
-			cache_remove('weblog:latest');
-			cache_remove('weblog:summary');
+			$id = WeblogData::new_entry(
+				$ctx->link, $ctx->title, $ctx->via, $ctx->note,
+				AFK_Users::current()->get_id());
+			if (is_null($id)) {
+				add_notification('error', "That link already appears to exist!");
+			} else {
+				cache_remove('weblog:latest');
+				cache_remove('weblog:summary');
+			}
+			$ctx->allow_rendering(false);
+			$ctx->redirect();
 		}
-
-		$ctx->allow_rendering(false);
-		$ctx->redirect();
 	}
 
 	public function on_put_entry(AFK_Context $ctx) {

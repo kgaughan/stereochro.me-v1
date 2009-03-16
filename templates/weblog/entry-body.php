@@ -1,5 +1,7 @@
 <div class="entry">
-	<div class="meta"><a href="/weblog/<?php echo $id ?>">&infin;</a></div>
+	<?php if (isset($id)) { ?>
+		<div class="meta"><a href="/weblog/<?php echo $id ?>">&infin;</a></div>
+	<?php } ?>
 
 	<?php if ($title != '' && $link != '') { ?>
 		<h2><a href="<?php ee($link) ?>"><?php echo format_line($title) ?></a></h2>
