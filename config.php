@@ -43,8 +43,8 @@ function init() {
 	cache_install($cache);
 
 	AFK_Users::set_implementation(new Users());
-	AFK_HttpAuthUsers::set_realm('talideon.com');
-	AFK_HttpAuthUsers::add_method(new AFK_HttpAuth_Digest('fdsaf rreq $vcxe~@', 'MFFH54gsbgdkjhgsr42'));
+	AFK_HttpAuthUsers::set_realm(AUTH_REALM);
+	AFK_HttpAuthUsers::add_method(new AFK_HttpAuth_Digest(DIGEST_OPAQUE, DIGEST_PRIVATE));
 
 	return array();
 }

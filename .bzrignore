@@ -1,2 +1,4 @@
 assets/afk
 lib/afk
+deployment/production.target
+deployment/configurations/production

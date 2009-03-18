@@ -57,7 +57,7 @@ class WeblogHandler extends AFK_HandlerBase {
 					$link->href = $e['via'];
 				}
 
-				if (trim($e['note']) != '') {
+				if (trim($e['note']) !== '') {
 					$content = $entry->content(trim(format($e['note'])));
 					$content->type = 'html';
 					$content->attr('xml:lang', 'en')->attr('xml:base', $entry_link);
