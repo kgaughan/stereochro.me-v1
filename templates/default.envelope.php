@@ -27,7 +27,7 @@
 		<?php
 		favicon();
 		// CSS naked day.
-		if (date('dm') != '0504') {
+		if (!is_naked_day(9)) {
 			stylesheets(array('screen' => array('prettify', 'screen'), 'print'));
 		}
 		get_slot('head');
@@ -36,6 +36,12 @@
 	<body>
 		<div id="outer1">
 			<div id="content">
+				<?php if (is_naked_day(9)) { ?>
+					<p>[To know more about why styles are disabled on this
+					website visit the <a href="http://naked.dustindiaz.com"
+					title="Web Standards Naked Day Host Website">Annual CSS
+					Naked Day</a> website for more information.]</p>
+				<?php } ?>
 				<?php echo $generated_content ?>
 			</div>
 		</div>
