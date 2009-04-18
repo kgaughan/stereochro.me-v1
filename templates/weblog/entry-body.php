@@ -24,12 +24,14 @@
 		<param name="FlashVars" value="playerMode=embedded">
 		</object>
 		</div>
-	<?php } elseif (preg_match('~^http://(?:www\.)vimeo\.com/(\d+)~', $link, $matches)) { ?>
+	<?php } elseif (preg_match('~^http://(?:www\.)?vimeo\.com/(\d+)~', $link, $matches)) { ?>
 		<?php $movie_url = "http://www.vimeo.com/moogaloop.swf?clip_id=" . $matches[1] ?>
 		<div class="illustration">
-		<object width="400" height="300" type="application/x-shockwave-flash" data="<?php ee($movie_url) ?>">
+		<object width="500" height="300" type="application/x-shockwave-flash" data="<?php ee($movie_url) ?>">
 		<param name="movie" value="<?php ee($movie_url) ?>">
-		<param name="FlashVars" value="quality=best&scale=exactfit">
+		<param name="FlashVars" value="quality=best&amp;scale=showAll">
+		<param name="quality" value="best">
+		<param name="scale" value="showAll">
 		</object>
 		</div>
 	<?php } ?>
