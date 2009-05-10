@@ -9,3 +9,5 @@ define('DB_NAME', 'talideon_v2');
 define('AUTH_REALM', 'Townsville');
 define('DIGEST_OPAQUE', 'icanhazcheezburger');
 define('DIGEST_PRIVATE', 'topsekrut');
+
+define('SITE_TIMEZONE', 'UTC');

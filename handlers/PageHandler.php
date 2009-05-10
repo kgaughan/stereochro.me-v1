@@ -18,7 +18,15 @@ class PageHandler extends AFK_HandlerBase {
 		} elseif ($ctx->try_not_modified(md5($page['content']))) {
 			return;
 		}
-		$ctx->merge($page);
+		if ($ctx->view() == 'source') {
+			$ctx->allow_rendering(false);
+			$ctx->header('Content-Type: text/plain; charset=UTF-8');
+			$ctx->header('X-Robots-Tag: noindex');
+			$ctx->header('Connection: close');
+			echo $page['content'];
+		} else {
+			$ctx->merge($page);
+		}
 	}
 
 	public function on_put_view(AFK_Context $ctx) {
