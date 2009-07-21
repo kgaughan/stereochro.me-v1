@@ -1,17 +1,18 @@
 <?php
 if (file_exists(APP_ROOT . '/site-config.php')) {
-	require(APP_ROOT . '/site-config.php');
+	require APP_ROOT . '/site-config.php';
 } else {
-	require(APP_ROOT . '/deployment/configurations/default.php');
+	require APP_ROOT . '/deployment/configurations/default.php';
 }
 
 define('PAGE_DATE', 'G:i \o\n F jS, Y');
+define('PAGE_LIMIT', 40);
 
 function routes() {
 	$r = new AFK_Routes(array(
 		'slug' => '[-a-z0-1.]+(?:/[-a-z0-1.]+)?|',
 		'id' => '[1-9]\d*',
-		'year' => '[2-9]\d{3}',
+		'year' => '[1-9]\d{3}',
 		'month' => '0[1-9]|1[0-2]'));
 
 	$r->defaults(array('_handler' => 'Weblog'));

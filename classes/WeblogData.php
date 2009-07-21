@@ -39,7 +39,7 @@ class WeblogData {
 			SELECT   id, time_m, time_c, link, title, via, note
 			FROM     weblog
 			ORDER BY time_m DESC
-			LIMIT    40');
+			LIMIT    %d', PAGE_LIMIT);
 	}
 
 	public static function get_latest_entries() {
@@ -49,7 +49,7 @@ class WeblogData {
 			SELECT   id, time_c, time_m, link, title, via, note
 			FROM     weblog
 			ORDER BY time_c DESC
-			LIMIT    40');
+			LIMIT    %d', PAGE_LIMIT);
 	}
 
 	public static function get_entries_for_month($year, $month) {
