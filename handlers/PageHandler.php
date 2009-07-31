@@ -8,7 +8,7 @@ class PageHandler extends AFK_HandlerBase {
 
 		$page = PageData::get_page($ctx->slug);
 		if (empty($page)) {
-			$page = array('title' => '', 'content' => '');
+			$page = array('title' => '', 'content' => '', 'style' => '');
 			if ($ctx->view() == 'edit' && AFK_Users::current()->is_logged_in()) {
 				$ctx->header('HTTP/1.1 404 Page Not Found');
 				$ctx->change_view('edit');
@@ -34,7 +34,7 @@ class PageHandler extends AFK_HandlerBase {
 		if (isset($ctx->preview)) {
 			$ctx->change_view('preview');
 		} else {
-			PageData::save($ctx->slug, $ctx->title, $ctx->content, AFK_Users::current()->get_id());
+			PageData::save($ctx->slug, $ctx->title, $ctx->content, $ctx->style, AFK_Users::current()->get_id());
 			cache_remove('page:' . $ctx->REQUEST_URI);
 			$ctx->allow_rendering(false);
 			$ctx->redirect();

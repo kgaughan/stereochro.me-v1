@@ -6,6 +6,7 @@
 <?php end_slot_append() ?>
 
 <?php if (cache('page:' . $ctx->REQUEST_URI)) { ?>
+	<?php if (trim($style) != '') { ?><div class="style-<?php ee($style) ?>"><?php } ?>
 	<h1><?php get_slot('title') ?></h1>
 
 	<?php echo format($content) ?>
@@ -15,4 +16,5 @@
 		last modified at <?php ee(date(PAGE_DATE, $time_m)) ?>
 		<?php } ?>
 	</div>
+	<?php if (trim($style) != '') { ?></div><?php } ?>
 <?php cache_end(); } ?>
