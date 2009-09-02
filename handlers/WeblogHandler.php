@@ -38,17 +38,25 @@ class WeblogHandler extends AFK_HandlerBase {
 				$entry->updated(date('c', $e['time_m']));
 				$entry->id('tag:talideon.com,2001:weblog:' . $e['id']);
 
+				$note = trim(format($e['note']));
+
 				$entry_link = $ctx->application_root() . 'weblog/' . $e['id'];
 
 				$link = $entry->link();
 				$link->rel = 'alternate';
 				$link->type = 'text/html';
 				$link->href = $entry_link;
-
-				$link = $entry->link();
-				$link->rel = 'related';
-				$link->type = 'text/html';
 				$link->href = empty($e['link']) ? $entry_link : $e['link'];
+
+				// So there'll always be a link back.
+				if (!empty($e['link'])) {
+					$link = $entry->link();
+					$link->rel = 'related';
+					$link->type = 'text/html';
+					$link->href = $entry_link;
+
+					$note .= '<p><a href="' . e($entry_link) . '">&infin;</a></p>';
+				}
 
 				if (!empty($e['via'])) {
 					$link = $entry->link();
@@ -58,7 +66,7 @@ class WeblogHandler extends AFK_HandlerBase {
 				}
 
 				if (trim($e['note']) !== '') {
-					$content = $entry->content(trim(format($e['note'])));
+					$content = $entry->content($note);
 					$content->type = 'html';
 					$content->attr('xml:lang', 'en')->attr('xml:base', $entry_link);
 				}
