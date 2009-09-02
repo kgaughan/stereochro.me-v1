@@ -2,7 +2,7 @@
 <?php start_slot('title') ?><?php echo format_line($title) ?><?php end_slot() ?>
 <?php $this->render('edit-links', array('url' => $ctx->application_root() . "$slug;edit")) ?>
 <?php start_slot('page-navigation') ?>
-	<li><a href="<?php ee($ctx->application_root() . "$slug;source") ?>">Page Source</a></li>
+	<li><a rel="noindex,nofollow" href="<?php ee($ctx->application_root() . "$slug;source") ?>">Page Source</a></li>
 <?php end_slot_append() ?>
 
 <?php if (cache('page:' . $ctx->REQUEST_URI)) { ?>
