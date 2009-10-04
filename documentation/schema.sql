@@ -7,6 +7,7 @@ CREATE TABLE pages (
 	user_id_m INTEGER UNSIGNED NOT NULL,
 	title     VARCHAR(150)     NOT NULL,
 	content   TEXT             NOT NULL,
+	style     VARCHAR(64)      NOT NULL,
 
 	PRIMARY KEY (id),
 	UNIQUE INDEX ux_slug (slug),

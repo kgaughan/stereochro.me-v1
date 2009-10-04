@@ -1,13 +1,11 @@
 <?php
-class WeblogData {
+class WeblogData extends DAO {
 
 	public static function new_entry($link, $title, $via, $note, $user_id) {
-		global $db;
-
 		list($link, $title, $via) = array_map('trim', array($link, $title, $via));
 		$now = time();
 
-		return $db->insert('weblog', array(
+		return DAO::get_connection()->insert('weblog', array(
 			'link' => empty($link) ? null : $link,
 			'title' => $title,
 			'via' => $via,
@@ -19,11 +17,9 @@ class WeblogData {
 	}
 
 	public static function update_entry($id, $link, $title, $via, $note, $user_id) {
-		global $db;
-
 		list($link, $title, $via) = array_map('trim', array($link, $title, $via));
 
-		return $db->execute('
+		return DAO::get_connection()->execute('
 			UPDATE weblog
 			SET    link = %s, title = %s, via = %s, note = %s,
 			       time_m = UNIX_TIMESTAMP(NOW()),
@@ -33,9 +29,7 @@ class WeblogData {
 	}
 
 	public static function get_latest_feed_entries() {
-		global $db;
-
-		return $db->query_all('
+		return DAO::get_connection()->query_all('
 			SELECT   id, time_m, time_c, link, title, via, note
 			FROM     weblog
 			ORDER BY time_m DESC
@@ -43,9 +37,7 @@ class WeblogData {
 	}
 
 	public static function get_latest_entries() {
-		global $db;
-
-		return $db->query_all('
+		return DAO::get_connection()->query_all('
 			SELECT   id, time_c, time_m, link, title, via, note
 			FROM     weblog
 			ORDER BY time_c DESC
@@ -53,12 +45,10 @@ class WeblogData {
 	}
 
 	public static function get_entries_for_month($year, $month) {
-		global $db;
-
 		$start = mktime(0, 0, 0, $month, 1, $year);
 		$end = mktime(0, 0, 0, $month + 1, 1, $year);
 
-		return $db->query_all('
+		return DAO::get_connection()->query_all('
 			SELECT id, time_c, link, title, via, note
 			FROM   weblog
 			WHERE  time_c BETWEEN %d AND %d
@@ -67,9 +57,7 @@ class WeblogData {
 	}
 
 	public static function get_entry($id) {
-		global $db;
-
-		return $db->query_row('
+		return DAO::get_connection()->query_row('
 			SELECT id, time_c, time_m, link, title, via, note
 			FROM   weblog
 			WHERE  id = %d
@@ -77,9 +65,7 @@ class WeblogData {
 	}
 
 	public static function get_archive_summary() {
-		global $db;
-
-		return $db->query_all('
+		return DAO::get_connection()->query_all('
 			SELECT   MAX(time_c) AS ts, COUNT(*) AS n
 			FROM     weblog
 			GROUP BY YEAR(FROM_UNIXTIME(time_c)) DESC,

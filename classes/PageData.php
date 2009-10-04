@@ -1,18 +1,15 @@
 <?php
-class PageData {
+class PageData extends DAO {
 
 	public static function get_page($slug) {
-		global $db;
-
-		return $db->query_row('
+		return DAO::get_connection()->query_row('
 			SELECT title, content, style, time_c, time_m
 			FROM   pages
 			WHERE  slug = %s', $slug);
 	}
 
 	public static function save($slug, $title, $content, $style, $user_id) {
-		global $db;
-
+		$db = DAO::get_connection();
 		if ($db->query_value('SELECT COUNT(*) FROM pages WHERE slug = %s', $slug) == 0) {
 			$now = time();
 			$db->insert('pages', array(

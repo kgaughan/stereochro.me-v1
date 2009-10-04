@@ -5,7 +5,6 @@ class WeblogHandler extends AFK_HandlerBase {
 	}
 
 	public function on_get_feed(AFK_Context $ctx) {
-		global $cache;
 		$ctx->allow_rendering(false);
 
 		$ctx->header('Content-Type: application/atom+xml; charset=UTF-8');

@@ -32,21 +32,15 @@ function routes() {
 }
 
 function init() {
-	global $db;
-	global $cache;
-
 	error_reporting(E_ALL);
 	date_default_timezone_set(SITE_TIMEZONE);
 	AFK::load_helper('core', 'forms', 'html', 'slots', 'markdown', 'smartypants', 'cache');
 
-	$db = new DB_MySQL(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+	cache_install(new AFK_Cache_DB(DAO::get_connection(), 'output_cache'));
 
-	$cache = new AFK_Cache_DB($db, 'output_cache');
-	cache_install($cache);
-
-	AFK_Users::set_implementation(new Users());
-	AFK_HttpAuthUsers::set_realm(AUTH_REALM);
-	AFK_HttpAuthUsers::add_method(new AFK_HttpAuth_Digest(DIGEST_OPAQUE, DIGEST_PRIVATE));
+	Users::set_implementation(new Users());
+	Users::set_realm(AUTH_REALM);
+	Users::add_method(new AFK_HttpAuth_Digest(DIGEST_OPAQUE, DIGEST_PRIVATE));
 
 	return array();
 }
