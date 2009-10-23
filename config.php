@@ -10,7 +10,7 @@ define('PAGE_LIMIT', 40);
 
 function routes() {
 	$r = new AFK_Routes(array(
-		'slug' => '[-a-z0-1.]+(?:/[-a-z0-1.]+)?|',
+		'slug' => '[-a-z0-9.]+(?:/[-a-z0-9.]+)?|',
 		'id' => '[1-9]\d*',
 		'year' => '[1-9]\d{3}',
 		'month' => '0[1-9]|1[0-2]'));
