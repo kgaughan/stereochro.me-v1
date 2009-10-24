@@ -210,8 +210,8 @@ div#preview:before {
 	width: 1em;
 	font-size: 200%;
 	color: #CF9B88;
-	text-align: left;
-	line-height: 1.0;
+	text-align: center;
+	line-height: 0.7;
 }
 .entry .meta a {
 	color: inherit;

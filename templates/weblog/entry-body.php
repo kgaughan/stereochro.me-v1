@@ -1,7 +1,12 @@
 <div class="entry">
-	<?php if (isset($id)) { ?>
-		<div class="meta"><a href="/weblog/<?php echo $id ?>">&infin;</a></div>
-	<?php } ?>
+	<div class="meta">
+		<?php if (isset($id)) { ?>
+			<div><a title="Permalink" href="/weblog/<?php echo $id ?>">&infin;</a></div>
+		<?php } ?>
+		<?php if (!empty($via)) { ?>
+			<div><a title="Via" href="<?php ee($via) ?>">&#9667;</a></div>
+		<?php } ?>
+	</div>
 
 	<?php if ($title != '' && $link != '') { ?>
 		<h2><a href="<?php ee($link) ?>"><?php echo format_line($title) ?></a></h2>
@@ -9,7 +14,7 @@
 		<h2><?php echo format_line($title) ?></h2>
 	<?php } ?>
 
-	<?php if (preg_match('~^http://(?:www\.)?youtube\.com/watch\?v=([A-Za-z0-9_]{11,})~', $link, $matches)) { ?>
+	<?php if (preg_match('~^http://(?:www\.)?youtube\.com/watch\?v=([-A-Za-z0-9_]{11,})~', $link, $matches)) { ?>
 		<?php $movie_url = "http://www.youtube.com/v/{$matches[1]}&rel=1" ?>
 		<div class="illustration">
 		<object width="425" height="355" type="application/x-shockwave-flash" data="<?php ee($movie_url) ?>">
