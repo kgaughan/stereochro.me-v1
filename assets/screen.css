@@ -23,7 +23,7 @@ body {
 #content, #footer, #masthead {
 	width: 44em;
 	margin: 0 auto;
-	overflow: auto;
+	overflow: hidden;
 }
 #outer1 {
 	background: #F8F4F0 bottom right no-repeat url(images/escape-top.png);
