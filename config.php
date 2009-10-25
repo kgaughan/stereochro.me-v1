@@ -7,6 +7,11 @@ if (file_exists(APP_ROOT . '/site-config.php')) {
 
 define('PAGE_DATE', 'G:i \o\n F jS, Y');
 define('PAGE_LIMIT', 40);
+define('FEED_URI_PREFIX', 'tag:talideon.com,2001:weblog');
+define('WEBLOG_NAME', 'Inklings');
+define('WEBLOG_SUBTITLE', 'A stream of random things');
+define('WEBLOG_AUTHOR', 'Keith Gaughan');
+define('WEBLOG_COPYRIGHT', 'Copyright (c) Keith Gaughan, 2001-' . date('Y'));
 
 function routes() {
 	$r = new AFK_Routes(array(

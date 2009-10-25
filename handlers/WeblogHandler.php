@@ -12,12 +12,12 @@ class WeblogHandler extends AFK_HandlerBase {
 		$modified = max(collect_column($entries, 'time_m'));
 		if (!$ctx->try_not_modified($modified)) {
 			$root = new AFK_ElementNode('feed', 'http://www.w3.org/2005/Atom');
-			$root->title('Inklings');
-			$root->subtitle('A stream of random things');
+			$root->title(WEBLOG_TITLE);
+			$root->subtitle(WEBLOG_SUBTITLE);
 			$root->updated(date('c', $modified));
-			$root->author()->name('Keith Gaughan');
-			$root->id('tag:talideon.com,2001:weblog');
-			$root->rights('Copyright (c) Keith Gaughan, 2001-' . date('Y'));
+			$root->author()->name(WEBLOG_AUTHOR);
+			$root->id(FEED_URI_PREFIX);
+			$root->rights(WEBLOG_COPYRIGHT);
 
 			$link = $root->link();
 			$link->rel = 'alternate';
@@ -35,7 +35,7 @@ class WeblogHandler extends AFK_HandlerBase {
 				$entry->title(empty($e['title']) ? 'Untitled' : $e['title']);
 				$entry->published(date('c', $e['time_c']));
 				$entry->updated(date('c', $e['time_m']));
-				$entry->id('tag:talideon.com,2001:weblog:' . $e['id']);
+				$entry->id(FEED_URI_PREFIX . ':' . $e['id']);
 
 				$note = trim(format($e['note']));
 
@@ -76,14 +76,14 @@ class WeblogHandler extends AFK_HandlerBase {
 	}
 
 	public function on_post_latest(AFK_Context $ctx) {
-		AFK_Users::prerequisites('edit');
+		Users::prerequisites('edit');
 
 		if (isset($ctx->preview)) {
 			$ctx->change_view('preview');
 		} else {
 			$id = WeblogData::new_entry(
 				$ctx->link, $ctx->title, $ctx->via, $ctx->note,
-				AFK_Users::current()->get_id());
+				Users::current()->get_id());
 			if (is_null($id)) {
 				add_notification('error', "That link already appears to exist!");
 			} else {
@@ -96,13 +96,13 @@ class WeblogHandler extends AFK_HandlerBase {
 	}
 
 	public function on_put_entry(AFK_Context $ctx) {
-		AFK_Users::prerequisites('edit');
+		Users::prerequisites('edit');
 		if (isset($ctx->preview)) {
 			$ctx->change_view('preview');
 		} else {
 			WeblogData::update_entry(
 				$ctx->id, $ctx->link, $ctx->title, $ctx->via, $ctx->note,
-				AFK_Users::current()->get_id());
+				Users::current()->get_id());
 			cache_remove('weblog:latest');
 			cache_remove('weblog:' . $ctx->id);
 			$ctx->allow_rendering(false);
@@ -111,7 +111,7 @@ class WeblogHandler extends AFK_HandlerBase {
 	}
 
 	public function on_get_add(AFK_Context $ctx) {
-		AFK_Users::prerequisites('edit');
+		Users::prerequisites('edit');
 		$ctx->default_to_empty('link', 'title', 'via', 'note');
 	}
 
@@ -123,7 +123,7 @@ class WeblogHandler extends AFK_HandlerBase {
 	}
 
 	public function on_get_edit(AFK_Context $ctx) {
-		AFK_Users::prerequisites('edit');
+		Users::prerequisites('edit');
 		$ctx->merge_or_not_found(WeblogData::get_entry($ctx->id));
 	}
 
