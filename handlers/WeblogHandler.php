@@ -7,6 +7,12 @@ class WeblogHandler extends AFK_HandlerBase {
 	public function on_get_feed(AFK_Context $ctx) {
 		$ctx->allow_rendering(false);
 
+		if (defined('FEED_URI_PREFIX')) {
+			$feed_uri_prefix = FEED_URI_PREFIX;
+		} else {
+			$feed_uri_prefix = 'tag:' . $ctx->HTTP_HOST . ':shibumi';
+		}
+
 		$ctx->header('Content-Type: application/atom+xml; charset=UTF-8');
 		$entries = WeblogData::get_latest_feed_entries();
 		$modified = max(collect_column($entries, 'time_m'));
@@ -16,7 +22,7 @@ class WeblogHandler extends AFK_HandlerBase {
 			$root->subtitle(WEBLOG_SUBTITLE);
 			$root->updated(date('c', $modified));
 			$root->author()->name(WEBLOG_AUTHOR);
-			$root->id(FEED_URI_PREFIX);
+			$root->id($feed_uri_prefix);
 			$root->rights(WEBLOG_COPYRIGHT);
 
 			$link = $root->link();
@@ -35,7 +41,7 @@ class WeblogHandler extends AFK_HandlerBase {
 				$entry->title(empty($e['title']) ? 'Untitled' : $e['title']);
 				$entry->published(date('c', $e['time_c']));
 				$entry->updated(date('c', $e['time_m']));
-				$entry->id(FEED_URI_PREFIX . ':' . $e['id']);
+				$entry->id($feed_uri_prefix . ':' . $e['id']);
 
 				$note = trim(format($e['note']));
 

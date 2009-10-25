@@ -5,13 +5,14 @@ if (file_exists(APP_ROOT . '/site-config.php')) {
 	require APP_ROOT . '/deployment/configurations/default.php';
 }
 
-define('PAGE_DATE', 'G:i \o\n F jS, Y');
-define('PAGE_LIMIT', 40);
-define('FEED_URI_PREFIX', 'tag:talideon.com,2001:weblog');
-define('WEBLOG_TITLE', 'Inklings');
-define('WEBLOG_SUBTITLE', 'A stream of random things');
-define('WEBLOG_AUTHOR', 'Keith Gaughan');
-define('WEBLOG_COPYRIGHT', 'Copyright (c) Keith Gaughan, 2001-' . date('Y'));
+AFK::ensure_constants(array(
+	'SITE_TIMEZONE' => 'UTC',
+	'PAGE_DATE' => 'G:i \o\n F jS, Y',
+	'PAGE_LIMIT' => 40,
+	'WEBLOG_TITLE' => 'My Weblog',
+	'WEBLOG_SUBTITLE' => '',
+	'WEBLOG_AUTHOR' => '',
+	'WEBLOG_COPYRIGHT' => 'Copyright (c) ' . date('Y')));
 
 function routes() {
 	$r = new AFK_Routes(array(
@@ -38,9 +39,6 @@ function routes() {
 
 function init() {
 	error_reporting(E_ALL);
-	if (!defined('SITE_TIMEZONE')) {
-		define('SITE_TIMEZONE', 'UTC');
-	}
 	date_default_timezone_set(SITE_TIMEZONE);
 	AFK::load_helper('core', 'forms', 'html', 'slots', 'markdown', 'smartypants', 'cache');
 
