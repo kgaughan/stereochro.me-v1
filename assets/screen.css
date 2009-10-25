@@ -5,19 +5,32 @@ body {
 	color: white;
 	text-align: left;
 	margin: 0;
-	padding: 0.3em 0 0 0;
+	padding: 0;
 }
-#content, #footer {
+#masthead a {
+	color: #E1C4B9;
+	display: block;
+	font-size: 80%;
+	font-weight: bold;
+	letter-spacing: 0.5ex;
+	padding: 0.5ex 0;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+#masthead span {
+	color: white;
+}
+#content, #footer, #masthead {
 	width: 44em;
 	margin: 0 auto;
 	overflow: auto;
 }
 #outer1 {
 	background: #F8F4F0 bottom right no-repeat url(images/escape-top.png);
-	color: black;
+	color: #543;
 }
 #content {
-	padding: 2em 0 2em 0;
+	padding: 3em 0 3em 0;
 }
 #outer2 {
 	background: top right no-repeat url(images/escape-bottom.png);
@@ -55,6 +68,7 @@ h1, h2 {
 }
 h1, h2, h3, h4, h5, h6 {
 	font-weight: normal;
+	color: #210;
 }
 .hr:before {
 	display: block;
@@ -76,7 +90,7 @@ h2 + p, h2 + form, h2 + div {
 }
 p + h1, div + h1, ul + h1, ol + h1,
 p + h2, div + h2, ul + h2, ol + h2 {
-	margin-top: 1.5ex;
+	margin-top: 2ex;
 }
 h1 .date {
 	font-size: 40%;

@@ -5,27 +5,35 @@ class WeblogData extends DAO {
 		list($link, $title, $via) = array_map('trim', array($link, $title, $via));
 		$now = time();
 
-		return DAO::get_connection()->insert('weblog', array(
-			'link' => empty($link) ? null : $link,
-			'title' => $title,
-			'via' => $via,
-			'note' => trim($note) == '' ? '' : $note,
-			'time_c' => $now,
-			'time_m' => $now,
-			'user_id_c' => $user_id,
-			'user_id_m' => $user_id));
+		try {
+			return DAO::get_connection()->insert('weblog', array(
+				'link' => empty($link) ? null : $link,
+				'title' => $title,
+				'via' => $via,
+				'note' => trim($note) == '' ? '' : $note,
+				'time_c' => $now,
+				'time_m' => $now,
+				'user_id_c' => $user_id,
+				'user_id_m' => $user_id));
+		} catch (DB_DuplicateException $dex) {
+			return null;
+		}
 	}
 
 	public static function update_entry($id, $link, $title, $via, $note, $user_id) {
 		list($link, $title, $via) = array_map('trim', array($link, $title, $via));
 
-		return DAO::get_connection()->execute('
-			UPDATE weblog
-			SET    link = %s, title = %s, via = %s, note = %s,
-			       time_m = UNIX_TIMESTAMP(NOW()),
-			       user_id_m = %d
-			WHERE  id = %d
-			', $link, $title, $via, $note, $user_id, $id);
+		try {
+			return DAO::get_connection()->execute('
+				UPDATE weblog
+				SET    link = %s, title = %s, via = %s, note = %s,
+				       time_m = UNIX_TIMESTAMP(NOW()),
+				       user_id_m = %d
+				WHERE  id = %d
+				', $link, $title, $via, $note, $user_id, $id);
+		} catch (DB_DuplicateException $dex) {
+			return null;
+		}
 	}
 
 	public static function get_latest_feed_entries() {

@@ -54,7 +54,7 @@ code {
 	background-color: #EEE;
 }
 
-form, #breadcrumbs, #nav, #metadata, .meta, #archive-summary {
+form, #breadcrumbs, #nav, #metadata, .meta, #archive-summary, #masthead {
 	display: none;
 }
 #footer {

@@ -4,7 +4,7 @@
 <html lang="en" dir="ltr">
 	<head>
 		<title>
-			<?php if (get_slot('title')) { ?> - <?php } ?>Talideon.com
+			<?php if (get_slot('title')) { ?> - <?php } ?>Stereochrome
 		</title>
 
 		<?php if ($ctx->REQUEST_URI == '/') { ?>
@@ -34,6 +34,7 @@
 		?>
 	</head>
 	<body>
+		<div id="masthead"><a href="/">stereochro<span>me</span></a></div>
 		<div id="outer1">
 			<div id="content">
 				<?php if (is_naked_day(9)) { ?>
