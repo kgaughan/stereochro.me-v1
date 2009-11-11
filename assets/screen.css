@@ -16,6 +16,7 @@ body {
 	padding: 0.5ex 0;
 	text-decoration: none;
 	text-transform: uppercase;
+	border: none;
 }
 #masthead span {
 	color: white;
@@ -242,4 +243,21 @@ div#preview:before {
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
+}
+
+#masthead a#movember {
+	width: 30px;
+	float: right;
+	line-height: 0;
+	padding: 1px 0 0 0;
+	display: inline;
+}
+
+#masthead img {
+	border: none;
+}
+
+.public-key {
+	border-left: 1ex solid #E1C4B9;
+	padding-left: 1ex;
 }
