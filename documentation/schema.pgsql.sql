@@ -30,8 +30,8 @@ CREATE INDEX pages_created ON pages (time_c);
 CREATE TABLE weblog (
 	id        SERIAL       NOT NULL PRIMARY KEY,
 	title     VARCHAR(150) NOT NULL,
-	link      VARCHAR(255) NULL     UNIQUE,
-	via       VARCHAR(255) NOT NULL,
+	link      VARCHAR(511) NULL     UNIQUE,
+	via       VARCHAR(511) NULL,
 	time_c    INTEGER      NOT NULL,
 	time_m    INTEGER      NOT NULL,
 	user_id_c INTEGER      NOT NULL REFERENCES users (id),

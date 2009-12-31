@@ -27,8 +27,8 @@ CREATE TABLE users (
 CREATE TABLE weblog (
 	id        INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
 	title     VARCHAR(150)     NOT NULL,
-	link      VARCHAR(255)     NULL,
-	via       VARCHAR(255)     NOT NULL,
+	link      VARCHAR(511)     NULL,
+	via       VARCHAR(511)     NULL,
 	time_c    INTEGER UNSIGNED NOT NULL,
 	time_m    INTEGER UNSIGNED NOT NULL,
 	user_id_c INTEGER UNSIGNED NOT NULL,
