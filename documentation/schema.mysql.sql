@@ -49,3 +49,12 @@ CREATE TABLE output_cache (
 	PRIMARY KEY (id),
 	INDEX ix_timestamp (ts)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE settings (
+	module CHAR(24)                               NOT NULL,
+	status ENUM('dev', 'test', 'staging', 'live') NOT NULL,
+	name   CHAR(24)                               NOT NULL,
+	value  TEXT                                   NOT NULL,
+
+	PRIMARY KEY (module, status, name)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;

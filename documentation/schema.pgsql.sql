@@ -41,3 +41,14 @@ CREATE TABLE weblog (
 
 CREATE INDEX weblog_created ON weblog (time_c);
 CREATE INDEX weblog_modified ON weblog (time_m);
+
+/*
+CREATE TABLE settings (
+	module CHAR(24) NOT NULL,
+	status CHAR(7)  NOT NULL,
+	name   CHAR(24) NOT NULL,
+	value  TEXT     NOT NULL,
+
+	PRIMARY KEY (module, status, name)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+*/
