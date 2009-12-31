@@ -34,7 +34,7 @@
 		?>
 	</head>
 	<body>
-		<div id="masthead"><a href="http://ie.movember.com/mospace/421230" id="movember"><img src="/assets/uploads/peachy-mo.png" width="31" height="23" alt="Gimme mo money for Movember!"></a><a href="/">stereochro<span>me</span></a></div>
+		<div id="masthead"><?php /* a href="http://ie.movember.com/mospace/421230" id="movember"><img src="/assets/uploads/peachy-mo.png" width="31" height="23" alt="Gimme mo money for Movember!"></a */ ?><a href="/">stereochro<span>me</span></a></div>
 		<div id="outer1">
 			<div id="content">
 				<?php if (is_naked_day(9)) { ?>
