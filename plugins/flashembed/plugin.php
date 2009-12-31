@@ -14,22 +14,22 @@ class FlashEmbedPlugin extends Plugin {
 	}
 
 	public function render_flash_tag($msg, array $attrs) {
-		if (!isset($attrs['url'])) {
+		if (!isset($attrs['href'])) {
 			return array(false, '');
 		}
-		$url = $attrs['url'];
+		$url = $attrs['href'];
 		$width = isset($attrs['width']) ? $attrs['width'] : 400;
 		$height = isset($attrs['height']) ? $attrs['height'] : 400;
-		unset($attrs['url'], $attrs['width'], $attrs['height']);
+		unset($attrs['href'], $attrs['width'], $attrs['height']);
 
 		return array(false, $this->generate_flash_embed($url, $width, $height, $attrs));
 	}
 
 	public function render_movie_tag($msg, array $attrs) {
-		if (!isset($attrs['url'])) {
+		if (!isset($attrs['href'])) {
 			return array(false, '');
 		}
-		$url = $attrs['url'];
+		$url = $attrs['href'];
 		$width = isset($attrs['width']) ? $attrs['width'] : null;
 		$height = isset($attrs['height']) ? $attrs['height'] : null;
 
