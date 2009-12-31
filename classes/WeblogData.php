@@ -3,6 +3,13 @@ class WeblogData extends DAO {
 
 	public static function new_entry($link, $title, $via, $note, $user_id) {
 		list($link, $title, $via) = array_map('trim', array($link, $title, $via));
+		if ($link == '') {
+			$link = null;
+		}
+		if ($via == '') {
+			$via = null;
+		}
+
 		$now = time();
 
 		try {
@@ -22,6 +29,12 @@ class WeblogData extends DAO {
 
 	public static function update_entry($id, $link, $title, $via, $note, $user_id) {
 		list($link, $title, $via) = array_map('trim', array($link, $title, $via));
+		if ($link == '') {
+			$link = null;
+		}
+		if ($via == '') {
+			$via = null;
+		}
 
 		try {
 			return DAO::get_connection()->execute('
