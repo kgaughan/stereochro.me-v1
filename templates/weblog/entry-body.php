@@ -1,7 +1,7 @@
 <div class="entry">
 	<div class="meta">
 		<?php if (isset($id)) { ?>
-			<div><a title="Permalink" href="/weblog/<?php echo $id ?>">&infin;</a></div>
+			<div><a title="Permalink" href="<?php le("/weblog/$id") ?>">&infin;</a></div>
 		<?php } ?>
 		<?php if (!empty($via)) { ?>
 			<div><a title="Via" href="<?php ee($via) ?>">&#9667;</a></div>

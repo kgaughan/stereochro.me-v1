@@ -43,11 +43,11 @@
 				<hr>
 				<?php get_slot('section-navigation') ?>
 				<ul id="nav">
-					<li><a href="/">Home</a></li>
-					<li><a href="/about">About</a></li>
-					<li><a href="/weblog/">Weblog</a></li>
-					<li><a href="/projects">Projects</a></li>
-					<li><a href="/colophon">Colophon</a></li>
+					<li><a href="<?php le() ?>">Home</a></li>
+					<li><a href="<?php le('about') ?>">About</a></li>
+					<li><a href="<?php le('weblog/') ?>">Weblog</a></li>
+					<li><a href="<?php le('projects') ?>">Projects</a></li>
+					<li><a href="<?php le('colophon') ?>">Colophon</a></li>
 					<?php get_slot('page-navigation') ?>
 				</ul>
 				<address>

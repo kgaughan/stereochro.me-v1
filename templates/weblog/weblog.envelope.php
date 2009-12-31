@@ -10,10 +10,10 @@ if (cache('weblog:summary')) {
 end_slot();
 ?>
 <?php start_slot('head') ?>
-	<link title="Feed" rel="alternate" href="/weblog/;feed" type="application/atom+xml">
+	<link title="Feed" rel="alternate" href="<?php le('weblog/;feed') ?>" type="application/atom+xml">
 <?php end_slot_append() ?>
 <?php start_slot('page-navigation') ?>
-	<li><a href="/weblog/;add">Add</a></li>
+	<li><a href="<?php le('weblog/;add') ?>">Add</a></li>
 <?php end_slot_append() ?>
 
 <h1><?php get_slot('title') ?></h1>

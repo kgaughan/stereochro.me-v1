@@ -1,6 +1,6 @@
 <?php display_notifications() ?>
 <form method="post" class="standard"
-	action="/weblog/<?php echo isset($id) ? $id : '' ?>">
+	action="<?php le('weblog/' . (isset($id) ? $id : '')) ?>">
 <p><label><span>Title</span>
 <input type="text" name="title" value="<?php ee($title) ?>"></label></p>
 <p><label><span>Link</span>
