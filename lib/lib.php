@@ -33,11 +33,19 @@ function format_line($text) {
 	return SmartyPants(e($text));
 }
 
-function is_naked_day($d) {
-	$start = date('U', mktime(-12, 0, 0, 04, $d, date('Y')));
-	$end = date('U', mktime(36, 0, 0, 04, $d, date('Y')));
-	$z = date('Z') * -1;
-	$now = time() + $z;
+function is_naked_day($now) {
+	$y = gmdate('Y', $now);
+	// The 7th is our fallback if neither the 5th or 9th work.
+	foreach (array(5, 9, 7) as $try) {
+		$day_of_week = gmdate('N', gmmktime(0, 0, 0, 4, $try, $y));
+		// Best if it's a Tuesday, Wednesday, or Thursday.
+		if ($day_of_week >= 2 && $day_of_week <= 4) {
+			$d = $try;
+			break;
+		}
+	}
+	$start = gmmktime(-12, 0, 0, 4, $d, $y);
+	$end = gmmktime(36, 0, 0, 4, $d, $y);
 	return $now >= $start && $now <= $end;
 }
 

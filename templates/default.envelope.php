@@ -7,27 +7,19 @@
 			<?php if (get_slot('title')) { ?> - <?php } ?>Stereochrome
 		</title>
 
-		<?php if ($ctx->REQUEST_URI == '/') { ?>
-			<link rel="openid.server" href="http://talideon.com/id/">
-			<link rel="openid.delegate" href="http://talideon.com/id/">
-		<?php } ?>
-
 		<meta name="MSSmartTagsPreventParsing" content="true">
 		<meta name="Author" content="Keith Gaughan">
-		<meta name="Copyright" content="Copyright (c) Keith Gaughan, 2001-<?php echo date('Y') ?>">
+		<meta name="Copyright" content="Copyright (c) Keith Gaughan, 2001-<?php echo gmdate('Y') ?>">
 
 		<meta name="ICBM" content="54.0333, -8.9000">
 		<meta name="geo.position" content="54.0333;-8.9000">
 		<meta name="geo.region" content="IE-SO">
 		<meta name="geo.placename" content="Aclare">
 
-		<link rel="blogroll" type="text/x-opml" title="Blogroll" href="http://bloglines.com/export?id=Keith">
-		<link rel="subscriptions" type="text/x-opml" title="Subscriptions" href="http://bloglines.com/export?id=Keith">
-
 		<?php
 		favicon();
 		// CSS naked day.
-		if (!is_naked_day(9)) {
+		if (!is_naked_day(time())) {
 			stylesheets(array('screen' => array('prettify', 'screen'), 'print'));
 		}
 		get_slot('head');
@@ -37,7 +29,7 @@
 		<div id="masthead"><?php /* a href="http://ie.movember.com/mospace/421230" id="movember"><img src="/assets/uploads/peachy-mo.png" width="31" height="23" alt="Gimme mo money for Movember!"></a */ ?><a href="/">stereochro<span>me</span></a></div>
 		<div id="outer1">
 			<div id="content">
-				<?php if (is_naked_day(9)) { ?>
+				<?php if (is_naked_day(time())) { ?>
 					<p>[To know more about why styles are disabled on this
 					website visit the <a href="http://naked.dustindiaz.com"
 					title="Web Standards Naked Day Host Website">Annual CSS
@@ -59,7 +51,7 @@
 					<?php get_slot('page-navigation') ?>
 				</ul>
 				<address>
-					Copyright &copy; Keith Gaughan, 2001&#8210;<?php echo date('Y') ?>.
+					Copyright &copy; Keith Gaughan, 2001&#8210;<?php echo gmdate('Y') ?>.
 					All Rights Reserved.
 					You can stop reading now.
 				</address>
