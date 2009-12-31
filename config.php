@@ -40,7 +40,10 @@ function routes() {
 function init() {
 	error_reporting(E_ALL);
 	date_default_timezone_set(SITE_TIMEZONE);
-	AFK::load_helper('core', 'forms', 'html', 'slots', 'markdown', 'smartypants', 'cache');
+	AFK::load_helper('core', 'events', 'forms', 'html', 'slots', 'markdown', 'smartypants', 'cache');
+
+	$plugins = array('flashembed');
+	AFK_Plugin::load(APP_ROOT . '/plugins', $plugins);
 
 	cache_install(new AFK_Cache_DB(DAO::get_connection(), 'output_cache'));
 
