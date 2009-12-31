@@ -5,7 +5,7 @@ class JavaEmbedPlugin extends Plugin {
 		return array('tag:java' => 'render_java_tag');
 	}
 
-	public function render_movie_tag($msg, array $attrs) {
+	public function render_java_tag($msg, array $attrs) {
 		if (!isset($attrs['href']) || !isset($attrs['class'])) {
 			return array(false, '');
 		}
@@ -13,7 +13,7 @@ class JavaEmbedPlugin extends Plugin {
 		$class = $attrs['class'];
 		$width = isset($attrs['width']) ? $attrs['width'] : 400;
 		$height = isset($attrs['height']) ? $attrs['height'] : 400;
-		unset($attrs['href'], $attrs['width'], $attrs['height']);
+		unset($attrs['href'], $attrs['class'], $attrs['width'], $attrs['height']);
 
 		$embed = $this->generate_java_embed($url, $class, $width, $height, $attrs);
 		return array($embed === false, $embed === false ? $attrs : $embed);
