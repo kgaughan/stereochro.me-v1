@@ -54,20 +54,20 @@ class FlashEmbedPlugin extends Plugin {
 		static $patterns = array(
 			'http://(?:www\.)?youtube\.com/watch\?v=([-A-Za-z0-9_]{11,})' => array(
 				'pattern' => "http://www.youtube.com/v/%s&rel=1",
-				'width' => 425,
-				'height' => 355),
+				'width' => 640,
+				'height' => 385),
 			'http://video\.google\.com/videoplay\?docid=(-?\d+)' => array(
 				'pattern' => "http://video.google.com/googleplayer.swf?hl=en&docId=%s",
-				'width' => 480,
-				'height' => 326),
+				'width' => 640,
+				'height' => 385),
 			'http://(?:www\.)?vimeo\.com/(\d+)' => array(
 				'pattern' => "http://www.vimeo.com/moogaloop.swf?clip_id=%s",
-				'width' => 500,
-				'height' => 300),
+				'width' => 640,
+				'height' => 385),
 			'http://(?:www\.)?dailymotion\.com/video/([a-z0-9]+)' => array(
 				'pattern' => "http://www.dailymotion.com/swf/%s",
-				'width' => 480,
-				'height' => 320));
+				'width' => 640,
+				'height' => 385));
 
 		foreach ($patterns as $pattern => $params) {
 			if (preg_match("~^$pattern~", $link, $matches)) {
