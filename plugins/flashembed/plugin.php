@@ -58,7 +58,7 @@ class FlashEmbedPlugin extends Plugin {
 				'height' => 355),
 			'http://video\.google\.com/videoplay\?docid=(-?\d+)' => array(
 				'pattern' => "http://video.google.com/googleplayer.swf?hl=en&docId=%s",
-				'width' => 400,
+				'width' => 480,
 				'height' => 326),
 			'http://(?:www\.)?vimeo\.com/(\d+)' => array(
 				'pattern' => "http://www.vimeo.com/moogaloop.swf?clip_id=%s",
@@ -66,8 +66,8 @@ class FlashEmbedPlugin extends Plugin {
 				'height' => 300),
 			'http://(?:www\.)?dailymotion\.com/video/([a-z0-9]+)' => array(
 				'pattern' => "http://www.dailymotion.com/swf/%s",
-				'width' => 420,
-				'height' => 339));
+				'width' => 480,
+				'height' => 320));
 
 		foreach ($patterns as $pattern => $params) {
 			if (preg_match("~^$pattern~", $link, $matches)) {
