@@ -16,5 +16,7 @@ end_slot();
 	<li><a href="<?php le('weblog/;add') ?>">Add</a></li>
 <?php end_slot_append() ?>
 
-<h1><?php get_slot('title') ?></h1>
+<?php if (has_slot('title')) { ?>
+	<h1><?php get_slot('title') ?></h1>
+<?php } ?>
 <?php echo $generated_content ?>

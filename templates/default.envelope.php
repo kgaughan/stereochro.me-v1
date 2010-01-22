@@ -25,7 +25,7 @@
 		get_slot('head');
 		?>
 	</head>
-	<body>
+	<body class="<?php get_slot('page_classes') ?>">
 		<div id="masthead"><?php /* a href="http://ie.movember.com/mospace/421230" id="movember"><img src="/assets/uploads/peachy-mo.png" width="31" height="23" alt="Gimme mo money for Movember!"></a */ ?><a href="/">stereochro<span>me</span></a></div>
 		<div id="outer1">
 			<div id="content">
@@ -58,6 +58,7 @@
 			</div>
 		</div>
 
+		<?php get_slot('post_body') ?>
 		<?php javascript(array('prettify')) ?>
 		<script type="text/javascript">
 		var gaJsHost = "https:" == document.location.protocol ? "https://ssl." : "http://www.";
