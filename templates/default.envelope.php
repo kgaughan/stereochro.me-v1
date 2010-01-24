@@ -20,7 +20,7 @@
 		favicon();
 		// CSS naked day.
 		if (!is_naked_day(time())) {
-			stylesheets(array('screen' => array('prettify', 'screen'), 'print'));
+			stylesheets(array('screen', 'print'));
 		}
 		get_slot('head');
 		?>
@@ -41,14 +41,14 @@
 		<div id="outer2">
 			<div id="footer">
 				<hr>
-				<?php get_slot('section-navigation') ?>
+				<?php get_slot('section_navigation') ?>
 				<ul id="nav">
 					<li><a href="<?php le() ?>">Home</a></li>
 					<li><a href="<?php le('about') ?>">About</a></li>
 					<li><a href="<?php le('weblog/') ?>">Weblog</a></li>
 					<li><a href="<?php le('projects') ?>">Projects</a></li>
 					<li><a href="<?php le('colophon') ?>">Colophon</a></li>
-					<?php get_slot('page-navigation') ?>
+					<?php get_slot('page_navigation') ?>
 				</ul>
 				<address>
 					Copyright &copy; Keith Gaughan, 2001&#8210;<?php echo gmdate('Y') ?>.
@@ -57,8 +57,6 @@
 				</address>
 			</div>
 		</div>
-
-		<?php javascript(array('prettify')) ?><script type="text/javascript">prettyPrint();</script>
 		<?php get_slot('post_body') ?>
 	</body>
 </html>
