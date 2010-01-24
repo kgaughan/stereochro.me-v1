@@ -16,8 +16,9 @@ class UrchinPlugin extends Plugin {
 			printf('<script type="text/javascript">try{_gat._getTracker("%s")._trackPageview();}catch(err){}</script>',
 				e($tracker));
 		}
-		return array(false, false);
+		return array(true, false);
 	}
 }
 
+// Instantiate an instance of this particular plugin.
 new UrchinPlugin();
