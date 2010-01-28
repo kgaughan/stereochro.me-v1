@@ -21,6 +21,8 @@ function routes() {
 		'year' => '[1-9]\d{3}',
 		'month' => '0[1-9]|1[0-2]'));
 
+	$r->route('/RPC', array('_handler' => 'XmlRpc'));
+
 	$r->defaults(array('_handler' => 'Weblog'));
 	$r->route('/weblog/', array('_view' => 'latest'));
 	$r->route('/weblog/;feed', array('_view' => 'feed'));
