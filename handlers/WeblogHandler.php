@@ -14,7 +14,7 @@ class WeblogHandler extends AFK_HandlerBase {
 		}
 
 		$ctx->header('Content-Type: application/atom+xml; charset=UTF-8');
-		$entries = WeblogData::get_latest_feed_entries();
+		$entries = WeblogData::get_latest_feed_entries(PAGE_LIMIT);
 		$modified = max(collect_column($entries, 'time_m'));
 		if (!$ctx->try_not_modified($modified)) {
 			$root = new AFK_ElementNode('feed', 'http://www.w3.org/2005/Atom');

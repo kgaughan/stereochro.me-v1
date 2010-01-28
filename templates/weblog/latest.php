@@ -1,7 +1,7 @@
 <?php
 $this->with_envelope('weblog');
 if (cache('weblog:latest')) {
-	$entries = WeblogData::get_latest_entries();
+	$entries = WeblogData::get_latest_entries(PAGE_LIMIT);
 	$this->render_each('entry-body', $entries, 'no-entries');
 	cache_end();
 }

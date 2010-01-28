@@ -49,20 +49,20 @@ class WeblogData extends DAO {
 		}
 	}
 
-	public static function get_latest_feed_entries() {
+	public static function get_latest_feed_entries($limit) {
 		return DAO::get_connection()->query_all('
 			SELECT   id, time_m, time_c, link, title, via, note
 			FROM     weblog
 			ORDER BY time_m DESC
-			LIMIT    %d', PAGE_LIMIT);
+			LIMIT    %d', $limit);
 	}
 
-	public static function get_latest_entries() {
+	public static function get_latest_entries($limit) {
 		return DAO::get_connection()->query_all('
 			SELECT   id, time_c, time_m, link, title, via, note
 			FROM     weblog
 			ORDER BY time_c DESC
-			LIMIT    %d', PAGE_LIMIT);
+			LIMIT    %d', $limit);
 	}
 
 	public static function get_entries_for_month($year, $month) {
