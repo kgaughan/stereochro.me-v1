@@ -42,7 +42,7 @@ class WeblogData extends DAO {
 				SET    link = %s, title = %s, via = %s, note = %s,
 				       time_m = UNIX_TIMESTAMP(NOW()),
 				       user_id_m = %d
-				WHERE  id = %d
+				WHERE  id = %s
 				', $link, $title, $via, $note, $user_id, $id);
 		} catch (DB_DuplicateException $dex) {
 			return null;
@@ -81,7 +81,7 @@ class WeblogData extends DAO {
 		return DAO::get_connection()->query_row('
 			SELECT id, time_c, time_m, link, title, via, note
 			FROM   weblog
-			WHERE  id = %d
+			WHERE  id = %s
 			', $id);
 	}
 
