@@ -64,6 +64,10 @@ class FlashEmbedPlugin extends Plugin {
 				'pattern' => "http://www.vimeo.com/moogaloop.swf?clip_id=%s",
 				'width' => 640,
 				'height' => 385),
+			'http://(?:www\.)?gametrailers\.com/video/[^/]+/(\d+)' => array(
+				'pattern' => "http://www.gametrailers.com/remote_wrap.php?mid=%s",
+				'width' => 640,
+				'height' => 385),
 			'http://(?:www\.)?dailymotion\.com/video/([a-z0-9]+)' => array(
 				'pattern' => "http://www.dailymotion.com/swf/%s",
 				'width' => 640,
