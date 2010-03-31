@@ -2,10 +2,11 @@
 class PageData extends DAO {
 
 	public static function get_page($slug) {
-		return DAO::get_connection()->query_row('
+		return DAO::query_row('
 			SELECT title, content, style, time_c, time_m
 			FROM   pages
-			WHERE  slug = %s', $slug);
+			WHERE  slug = :slug
+			', compact('slug'));
 	}
 
 	public static function save($slug, $title, $content, $style, $user_id) {

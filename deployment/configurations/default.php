@@ -1,10 +1,9 @@
 <?php
 define('STATUS', 'DEV');
 
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
+define('DB_DSN', 'pgsql:host=localhost dbname=talideon_v2');
+define('DB_USER', 'keith');
 define('DB_PASS', '');
-define('DB_NAME', 'talideon_v2');
 
 define('AUTH_REALM', 'Townsville');
 define('DIGEST_OPAQUE', 'icanhazcheezburger');

@@ -47,7 +47,7 @@ function init() {
 	$plugins = array('flashembed', 'javaembed', 'urchin', 'prettify');
 	AFK_Plugin::load(APP_ROOT . '/plugins', $plugins);
 
-	cache_install(new AFK_Cache_DB(DAO::get_connection(), 'output_cache'));
+	cache_install(new AFK_Cache_PDO(DAO::get_connection(), 'output_cache'));
 
 	Users::set_implementation(new Users());
 	Users::set_realm(AUTH_REALM);
