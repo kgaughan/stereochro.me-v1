@@ -1,8 +1,8 @@
 <?php
 define('STATUS', 'DEV');
 
-define('DB_DSN', 'pgsql:host=localhost dbname=talideon_v2');
-define('DB_USER', 'keith');
+define('DB_DSN', 'pgsql:host=localhost dbname=shibumi');
+define('DB_USER', 'pgsql');
 define('DB_PASS', '');
 
 define('AUTH_REALM', 'Townsville');
