@@ -41,10 +41,12 @@ class AkismetClient {
 		if ($command == 'verify-key') {
 			$args = $this->shared;
 		} else {
-			$args = array_merge($this->shared, $this->environment, $args, array(
-				'user_ip' => $this->environment['REMOTE_ADDR'],
-				'referrer' => $this->get('HTTP_REFERER'),
-				'user_agent' => $this->get('HTTP_USER_AGENT')));
+			$args =
+				array(
+					'user_ip' => $this->environment['REMOTE_ADDR'],
+					'referrer' => $this->get('HTTP_REFERER'),
+					'user_agent' => $this->get('HTTP_USER_AGENT')) +
+				$args + $this->environment + $this->shared;
 		}
 
 		list($status, , $body) = $this->do_post($host, $path, $args);
