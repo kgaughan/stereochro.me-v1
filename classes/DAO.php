@@ -11,8 +11,16 @@ class DAO {
 		return DAO::$db;
 	}
 
+	public static function execute($q, array $args) {
+		return AFK_PDOHelper::execute(DAO::get_connection(), $q, $args);
+	}
+
 	public static function query($q, array $args, $class='AFK_PDO_RowIterator') {
 		return AFK_PDOHelper::query(DAO::get_connection(), $q, $args, $class);
+	}
+
+	public static function query_value($q, array $args) {
+		return AFK_PDOHelper::query_value(DAO::get_connection(), $q, $args);
 	}
 
 	public static function query_row($q, array $args, $fetch=PDO::FETCH_ASSOC) {
