@@ -1,5 +1,5 @@
 body {
-	font-family: "Gill Sans MT", Calibri, "Helvetica Neue", Arial, sans-serif; 
+	font-family: "Gill Sans MT", Calibri, "Droid Sans", "Helvetica Neue", Arial, sans-serif; 
 	line-height: 1.5;
 	background: #903618;
 	color: white;
@@ -43,7 +43,7 @@ ul#breadcrumbs {
 	font-size: 80%;
 	margin: 0;
 	padding: 0;
-	list-style:none;
+	list-style: none;
 	width: 100%;
 	overflow: hidden;
 }
@@ -131,10 +131,10 @@ ul#nav li, ul#archive-summary li {
 	padding: 0 1ex 0 0;
 	float: left;
 }
-ul#nav li:after, ul#archive-summary li:after {
+ul#nav li:before, ul#archive-summary li:before {
 	color: #CF9B88;
 	content: /*"\2767"*/"\223C";
-	padding: 0 0 0 1ex;
+	padding: 0 1ex 0 0;
 }
 #footer > * {
 	font-size: 80%;
