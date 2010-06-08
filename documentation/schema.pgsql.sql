@@ -16,8 +16,8 @@ CREATE TABLE users (
 CREATE TABLE pages (
 	id        SERIAL       NOT NULL PRIMARY KEY,
 	slug      VARCHAR(150) NOT NULL UNIQUE,
-	time_c    INTEGER      NOT NULL,
-	time_m    INTEGER      NOT NULL,
+	time_c    TIMESTAMP    NOT NULL,
+	time_m    TIMESTAMP    NOT NULL,
 	user_id_c INTEGER      NOT NULL REFERENCES users (id),
 	user_id_m INTEGER      NOT NULL REFERENCES users (id),
 	title     VARCHAR(150) NOT NULL,
@@ -32,8 +32,8 @@ CREATE TABLE weblog (
 	title     VARCHAR(150) NOT NULL,
 	link      VARCHAR(511) NULL     UNIQUE,
 	via       VARCHAR(511) NULL,
-	time_c    INTEGER      NOT NULL,
-	time_m    INTEGER      NOT NULL,
+	time_c    TIMESTAMP    NOT NULL,
+	time_m    TIMESTAMP    NOT NULL,
 	user_id_c INTEGER      NOT NULL REFERENCES users (id),
 	user_id_m INTEGER      NOT NULL REFERENCES users (id),
 	note      TEXT         NOT NULL
@@ -42,13 +42,12 @@ CREATE TABLE weblog (
 CREATE INDEX weblog_created ON weblog (time_c);
 CREATE INDEX weblog_modified ON weblog (time_m);
 
-/*
 CREATE TABLE settings (
 	module CHAR(24) NOT NULL,
+	-- ENUM('dev', 'test', 'staging', 'live')
 	status CHAR(7)  NOT NULL,
 	name   CHAR(24) NOT NULL,
 	value  TEXT     NOT NULL,
 
 	PRIMARY KEY (module, status, name)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-*/
+);

@@ -14,13 +14,13 @@ class WeblogHandler extends AFK_HandlerBase {
 		}
 
 		$ctx->header('Content-Type: application/atom+xml; charset=UTF-8');
-		$entries = WeblogData::get_latest_feed_entries(PAGE_LIMIT);
-		$modified = max(collect_column($entries, 'time_m'));
-		if (!$ctx->try_not_modified($modified)) {
+		$modified = WeblogData::get_most_recent_modification_date();
+		if (!$ctx->try_not_modified(md5($modified))) {
+			$entries = WeblogData::get_latest_feed_entries(PAGE_LIMIT);
 			$root = new AFK_ElementNode('feed', 'http://www.w3.org/2005/Atom');
 			$root->title(WEBLOG_TITLE);
 			$root->subtitle(WEBLOG_SUBTITLE);
-			$root->updated(date('c', $modified));
+			$root->updated(ts('c', $modified));
 			$root->author()->name(WEBLOG_AUTHOR);
 			$root->id($feed_uri_prefix);
 			$root->rights(WEBLOG_COPYRIGHT);
@@ -39,8 +39,8 @@ class WeblogHandler extends AFK_HandlerBase {
 			foreach ($entries as $e) {
 				$entry = $root->entry();
 				$entry->title(empty($e['title']) ? 'Untitled' : $e['title']);
-				$entry->published(date('c', $e['time_c']));
-				$entry->updated(date('c', $e['time_m']));
+				$entry->published(ts('c', $e['time_c']));
+				$entry->updated(ts('c', $e['time_m']));
 				$entry->id($feed_uri_prefix . ':' . $e['id']);
 
 				$note = trim(format($e['note']));
@@ -135,7 +135,7 @@ class WeblogHandler extends AFK_HandlerBase {
 
 	public function on_get_month(AFK_Context $ctx) {
 		$entries = WeblogData::get_entries_for_month($ctx->year, $ctx->month);
-		if (count($entries) == 0) {
+		if (!$entries->valid()) {
 			$ctx->not_found();
 		}
 		$ctx->ts = mktime(0, 0, 0, $ctx->month, 1, $ctx->year);

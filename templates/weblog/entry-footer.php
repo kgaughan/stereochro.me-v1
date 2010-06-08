@@ -2,9 +2,9 @@
 <?php if ($via != '') { ?>
 	<a href="<?php ee($via) ?>"?>Via</a>;
 <?php } ?>
-Created at <?php ee(date(PAGE_DATE, $time_c)) ?>
+Created at <?php ee(ts(PAGE_DATE, $time_c)) ?>
 <?php if ($time_c != $time_m) { ?>
-	and last modified at <?php ee(date(PAGE_DATE, $time_m)) ?>
+	and last modified at <?php ee(ts(PAGE_DATE, $time_m)) ?>
 <?php } ?>
 </div>
 

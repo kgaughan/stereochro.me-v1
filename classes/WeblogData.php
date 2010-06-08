@@ -3,93 +3,93 @@ class WeblogData extends DAO {
 
 	public static function new_entry($link, $title, $via, $note, $user_id) {
 		list($link, $title, $via) = array_map('trim', array($link, $title, $via));
-		if ($link == '') {
+		if (empty($link)) {
 			$link = null;
 		}
-		if ($via == '') {
+		if (empty($via)) {
 			$via = null;
 		}
-
-		$now = time();
-
-		try {
-			return DAO::get_connection()->insert('weblog', array(
-				'link' => empty($link) ? null : $link,
-				'title' => $title,
-				'via' => $via,
-				'note' => trim($note) == '' ? '' : $note,
-				'time_c' => $now,
-				'time_m' => $now,
-				'user_id_c' => $user_id,
-				'user_id_m' => $user_id));
-		} catch (DB_DuplicateException $dex) {
-			return null;
+		if (trim($note) == '') {
+			$note = '';
 		}
+
+		return DAO::execute('
+			INSERT INTO weblog (
+				link, title, via, note, time_c, time_m, user_id_c, user_id_m
+			) VALUES (
+				:link, :title, :via, :note, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, :user_id, :user_id
+			)', compact('link', 'title', 'via', 'note', 'user_id'));
 	}
 
 	public static function update_entry($id, $link, $title, $via, $note, $user_id) {
 		list($link, $title, $via) = array_map('trim', array($link, $title, $via));
-		if ($link == '') {
+		if (empty($link)) {
 			$link = null;
 		}
-		if ($via == '') {
+		if (empty($via)) {
 			$via = null;
 		}
-
-		try {
-			return DAO::get_connection()->execute('
-				UPDATE weblog
-				SET    link = %s, title = %s, via = %s, note = %s,
-				       time_m = UNIX_TIMESTAMP(NOW()),
-				       user_id_m = %d
-				WHERE  id = %s
-				', $link, $title, $via, $note, $user_id, $id);
-		} catch (DB_DuplicateException $dex) {
-			return null;
+		if (trim($note) == '') {
+			$note = '';
 		}
+
+		return DAO::execute('
+			UPDATE weblog
+			SET    link = :link, title = :title, via = :via, note = :note,
+				   time_m = CURRENT_TIMESTAMP,
+				   user_id_m = :user_id
+			WHERE  id = :id
+			', compact('id', 'link', 'title', 'via', 'note', 'user_id'));
+	}
+
+	public static function get_most_recent_modification_date() {
+		return DAO::query_value('SELECT MAX(time_m) FROM weblog', array());
 	}
 
 	public static function get_latest_feed_entries($limit) {
-		return DAO::get_connection()->query_all('
+		return DAO::query('
 			SELECT   id, time_m, time_c, link, title, via, note
 			FROM     weblog
 			ORDER BY time_m DESC
-			LIMIT    %d', $limit);
+			LIMIT    :limit
+			', compact('limit'));
 	}
 
 	public static function get_latest_entries($limit) {
-		return DAO::get_connection()->query_all('
+		return DAO::query('
 			SELECT   id, time_c, time_m, link, title, via, note
 			FROM     weblog
 			ORDER BY time_c DESC
-			LIMIT    %d', $limit);
+			LIMIT    :limit
+			', compact('limit'));
 	}
 
 	public static function get_entries_for_month($year, $month) {
-		$start = mktime(0, 0, 0, $month, 1, $year);
-		$end = mktime(0, 0, 0, $month + 1, 1, $year);
+		$start = dbts(mktime(0, 0, 0, $month, 1, $year));
+		$end = dbts(mktime(0, 0, 0, $month + 1, 1, $year));
 
-		return DAO::get_connection()->query_all('
-			SELECT id, time_c, link, title, via, note
-			FROM   weblog
-			WHERE  time_c BETWEEN %d AND %d
+		return DAO::query('
+			SELECT   id, time_c, link, title, via, note
+			FROM     weblog
+			WHERE    time_c BETWEEN :start AND :end
 			ORDER BY time_c ASC
-			', $start, $end);
+			', compact('start', 'end'));
 	}
 
 	public static function get_entry($id) {
-		return DAO::get_connection()->query_row('
+		return DAO::query_row('
 			SELECT id, time_c, time_m, link, title, via, note
 			FROM   weblog
-			WHERE  id = %s
-			', $id);
+			WHERE  id = :id
+			', compact('id'));
 	}
 
 	public static function get_archive_summary() {
-		return DAO::get_connection()->query_all('
+		return DAO::query("
 			SELECT   MAX(time_c) AS ts, COUNT(*) AS n
 			FROM     weblog
-			GROUP BY YEAR(FROM_UNIXTIME(time_c)) DESC,
-			         MONTH(FROM_UNIXTIME(time_c)) DESC');
+			GROUP BY DATE_TRUNC('month', time_c)
+			ORDER BY DATE_TRUNC('month', time_c) DESC
+			", array());
 	}
 }

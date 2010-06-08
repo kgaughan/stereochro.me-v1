@@ -53,3 +53,11 @@ function generate_link_embed($link) {
 	list($unhandled, $result) = trigger_event('render_link', $link);
 	return $unhandled ? false : $result;
 }
+
+function ts($fmt, $ts) {
+	return gmdate($fmt, is_int($ts) ? $ts : strtotime($ts));
+}
+
+function dbts($ts) {
+	return ts('Y-m-d H:i:s', $ts);
+}

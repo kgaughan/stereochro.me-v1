@@ -3,8 +3,7 @@ $this->with_envelope();
 
 start_slot('section_navigation');
 if (cache('weblog:summary')) {
-	$archive_summary = WeblogData::get_archive_summary();
-	$this->render_each('archive-summary', $archive_summary);
+	$this->render_each('archive-summary', WeblogData::get_archive_summary());
 	cache_end();
 }
 end_slot();
