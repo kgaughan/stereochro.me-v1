@@ -150,10 +150,15 @@ dl#archive-summary dt {
 	clear: left;
 	width: 3.5em;
 	font-weight: normal;
+	text-align: right;
 }
 dl#archive-summary dd {
 	margin: 0;
-	width: 2.5em;
+	width: 3.5em;
+	text-align: right;
+}
+dl#archive-summary dd a {
+	display: block;
 }
 
 #footer > * {

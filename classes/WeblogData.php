@@ -86,10 +86,13 @@ class WeblogData extends DAO {
 
 	public static function get_archive_summary() {
 		return DAO::query("
-			SELECT   MAX(time_c) AS ts, COUNT(*) AS n
+			SELECT   EXTRACT(YEAR FROM MAX(time_c)) AS \"year\",
+			         EXTRACT(MONTH FROM MAX(time_c)) AS \"month\",
+			         COUNT(*) AS n
 			FROM     weblog
 			GROUP BY DATE_TRUNC('month', time_c)
-			ORDER BY DATE_TRUNC('month', time_c) DESC
+			ORDER BY EXTRACT(YEAR FROM MAX(time_c)) DESC,
+			         EXTRACT(MONTH FROM MAX(time_c)) ASC
 			", array());
 	}
 }

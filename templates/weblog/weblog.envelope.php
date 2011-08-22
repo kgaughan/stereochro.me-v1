@@ -6,22 +6,44 @@ if (cache('weblog:summary')) {
 	$archive_summary = WeblogData::get_archive_summary();
 	$year = null;
 	$last_month = 0;
-	?><dl id="archive-summary"><?php
+	?>
+		<dl id="archive-summary">
+		<dt>&nbsp;</dt>
+		<dd>Jan</dd>
+		<dd>Feb</dd>
+		<dd>Mar</dd>
+		<dd>Apr</dd>
+		<dd>May</dd>
+		<dd>Jun</dd>
+		<dd>Jul</dd>
+		<dd>Aug</dd>
+		<dd>Sep</dd>
+		<dd>Oct</dd>
+		<dd>Nov</dd>
+		<dd>Dec</dd>
+		<?php
 	foreach ($archive_summary as $r) {
-		$ts = strtotime($r['ts']);
-		$y = date('Y', $ts);
-		$m = date('m', $ts);
-		if ($y !== $year) {
+		$m = intval($r['month']);
+		$y = intval($r['year']);
+		$ts = gmmktime(0, 0, 0, $m, 1, $y);
+		if ($y != $year) {
+			if ($last_month != 0) {
+				for ($i = 0; $i < 12 - $last_month; $i++) {
+					echo '<dd>&nbsp;</dd>';
+				}
+			}
 			$year = $y;
+			$last_month = 0;
 			echo '<dt>', $year, ':</dt>';
-		} else if ($m - 1 != $last_month) {
+		}
+		if ($m - 1 != $last_month) {
 			for ($i = 1; $i < $m - $last_month; $i++) {
-				echo '<dd>&mdash;</dd>';
+				echo '<dd>&nbsp;</dd>';
 			}
 		}
 		echo '<dd><a title="', date('F Y', $ts), '; entries: ', $r['n'], '" href="';
 		le('weblog/' . date('Y-m', $ts));
-		echo '">', date('M', $ts), '</a></dd>';
+		echo '">', $r['n'], '</a></dd>';
 		$last_month = $m;
 	}
 	?></dl><?php
