@@ -3,16 +3,14 @@ $this->with_envelope();
 
 start_slot('section_navigation');
 if (cache('weblog:summary')) {
-	$this->render_each('archive-summary', WeblogData::get_archive_summary());
-	/*
 	$archive_summary = WeblogData::get_archive_summary();
-	AFK::dump($archive_summary);
 	$year = null;
 	$last_month = 0;
 	?><dl id="archive-summary"><?php
 	foreach ($archive_summary as $r) {
-		$y = date('Y', $r['ts']);
-		$m = date('m', $r['ts']);
+		$ts = strtotime($r['ts']);
+		$y = date('Y', $ts);
+		$m = date('m', $ts);
 		if ($y !== $year) {
 			$year = $y;
 			echo '<dt>', $year, ':</dt>';
@@ -21,13 +19,12 @@ if (cache('weblog:summary')) {
 				echo '<dd>&mdash;</dd>';
 			}
 		}
-		echo '<dd><a title="', date('F Y', $r['ts']), '; entries: ', $r['n'], '" href="';
-		le('weblog/' . date('Y-m', $r['ts']));
-		echo '">', date('M', $r['ts']), '</a></dd>';
+		echo '<dd><a title="', date('F Y', $ts), '; entries: ', $r['n'], '" href="';
+		le('weblog/' . date('Y-m', $ts));
+		echo '">', date('M', $ts), '</a></dd>';
 		$last_month = $m;
 	}
 	?></dl><?php
-	*/
 	cache_end();
 }
 end_slot();
