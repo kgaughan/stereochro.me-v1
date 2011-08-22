@@ -101,7 +101,7 @@ h1 .date {
 	padding: 0 0.25ex;
 }
 p {
-	margin: 0;
+	margin: 0.5ex 0;
 }
 p + p {
 	text-indent: 2em;
@@ -110,6 +110,7 @@ ul li, ol li {
 	margin-top: 1ex;
 	margin-bottom: 1ex;
 }
+
 ul#nav, ul#archive-summary {
 	list-style: none;
 	margin: 0;
@@ -120,22 +121,41 @@ ul#nav:before {
 	display: block;
 	font-weight: bold;
 	content: "Elsewhere: ";
+	text-transform: small-caps;
 }
-ul#archive-summary:before {
+#archive-summary:before {
 	display: block;
 	font-weight: bold;
 	content: "Archive summary: ";
+	text-transform: small-caps;
 }
 ul#nav li, ul#archive-summary li {
 	margin: 0;
 	padding: 0 1ex 0 0;
 	float: left;
 }
-ul#nav li:before, ul#archive-summary li:before {
+ul#nav li:after, ul#archive-summary li:after {
 	color: #CF9B88;
 	content: /*"\2767"*/"\223C";
-	padding: 0 1ex 0 0;
+	padding: 0 0 0 1ex;
 }
+
+dl#archive-summary {
+	overflow: hidden;
+}
+dl#archive-summary dt, dl#archive-summary dd {
+	float: left;
+}
+dl#archive-summary dt {
+	clear: left;
+	width: 3.5em;
+	font-weight: normal;
+}
+dl#archive-summary dd {
+	margin: 0;
+	width: 2.5em;
+}
+
 #footer > * {
 	font-size: 80%;
 }
@@ -156,9 +176,12 @@ address {
 	margin: 0;
 	padding: 0;
 }
+pre, code {
+	font-family: "Droid Sans Mono", Consolas, monospace;
+	font-size: 80%;
+}
 body pre.prettyprint {
 	background: white;
-	font-size: 80%;
 	padding: 1ex;
 }
 
@@ -211,6 +234,7 @@ div#preview:before {
 }
 .entry {
 	padding-left: 2em;
+	padding-right: 2em;
 	position: relative;
 	overflow: hidden;
 }
@@ -238,11 +262,15 @@ div#preview:before {
 .meta + h2 {
 	margin-top: 0;
 }
+.meta .comments {
+	line-height: 1.7;
+	font-size: 50%;
+}
 
 .illustration {
-	margin-left: auto;
-	margin-right: auto;
+	margin: 1em auto;
 	text-align: center;
+	text-indent: 0;
 }
 
 #masthead a#movember {
@@ -260,4 +288,18 @@ div#preview:before {
 .public-key {
 	border-left: 1ex solid #E1C4B9;
 	padding-left: 1ex;
+}
+
+table {
+	margin: 1em auto;
+	text-align: center;
+	border-collapse: collapse;
+}
+table th {
+	padding: 0 1ex;
+	border-bottom: 1px solid #543;
+}
+table td {
+	padding: 0 1ex;
+	border-bottom: 1px solid #E1C4B9;
 }

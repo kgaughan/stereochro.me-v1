@@ -4,6 +4,30 @@ $this->with_envelope();
 start_slot('section_navigation');
 if (cache('weblog:summary')) {
 	$this->render_each('archive-summary', WeblogData::get_archive_summary());
+	/*
+	$archive_summary = WeblogData::get_archive_summary();
+	AFK::dump($archive_summary);
+	$year = null;
+	$last_month = 0;
+	?><dl id="archive-summary"><?php
+	foreach ($archive_summary as $r) {
+		$y = date('Y', $r['ts']);
+		$m = date('m', $r['ts']);
+		if ($y !== $year) {
+			$year = $y;
+			echo '<dt>', $year, ':</dt>';
+		} else if ($m - 1 != $last_month) {
+			for ($i = 1; $i < $m - $last_month; $i++) {
+				echo '<dd>&mdash;</dd>';
+			}
+		}
+		echo '<dd><a title="', date('F Y', $r['ts']), '; entries: ', $r['n'], '" href="';
+		le('weblog/' . date('Y-m', $r['ts']));
+		echo '">', date('M', $r['ts']), '</a></dd>';
+		$last_month = $m;
+	}
+	?></dl><?php
+	*/
 	cache_end();
 }
 end_slot();
@@ -18,4 +42,22 @@ end_slot();
 <?php if (has_slot('title')) { ?>
 	<h1><?php get_slot('title') ?></h1>
 <?php } ?>
+
 <?php echo $generated_content ?>
+
+<?php start_slot('post_body') ?>
+<script type="text/javascript">
+//<![CDATA[
+(function() {
+	var links = document.getElementsByTagName('a');
+	var query = '?';
+	for (var i = 0; i < links.length; i++) {
+		if (links[i].href.indexOf('#disqus_thread') >= 0) {
+			query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+		}
+	}
+	document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/stereochrome/get_num_replies.js' + query + '"></' + 'script>');
+})();
+//]]>
+</script>
+<?php end_slot_append() ?>

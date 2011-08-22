@@ -6,5 +6,5 @@ $this->render_each('entry-body', $entries, 'no-entries');
 	<meta name="robots" content="noindex, follow">
 <?php end_slot_append() ?>
 <?php start_slot('title') ?>
-	Inklings in <?php ee(ts('F Y', $ts)) ?>
+	Inklings in <?php ee(date('F Y', $ts)) ?>
 <?php end_slot() ?>

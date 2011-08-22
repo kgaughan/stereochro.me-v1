@@ -33,6 +33,14 @@ function format_line($text) {
 	return SmartyPants(e($text));
 }
 
+function google_fonts() {
+	$fonts = func_get_args();
+	foreach ($fonts as $font) {
+		printf('<link href="http://fonts.googleapis.com/css?family=%s" rel="stylesheet" type="text/css">',
+			htmlentities(urlencode($font)));
+	}
+}
+
 function is_naked_day($now) {
 	$y = gmdate('Y', $now);
 	// The 7th is our fallback if neither the 5th or 9th work.

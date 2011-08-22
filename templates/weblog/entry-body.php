@@ -2,6 +2,7 @@
 	<div class="meta">
 		<?php if (isset($id)) { ?>
 			<div><a title="Permalink" href="<?php le("weblog/$id") ?>">&infin;</a></div>
+			<div class="comments"><a href="<?php le("weblog/$id") ?>#disqus_thread">cmt</a></div>
 		<?php } ?>
 		<?php if (!empty($via)) { ?>
 			<div><a title="Via" href="<?php ee($via) ?>">&#9667;</a></div>

@@ -20,18 +20,26 @@
 		favicon();
 		// CSS naked day.
 		if (!is_naked_day(time())) {
+			// google_fonts('Droid Serif', 'Droid Sans');
 			stylesheets(array('screen', 'print'));
 		}
 		get_slot('head');
 		?>
+
+		<style type="text/css" media="handheld">
+		#content, #footer, #masthead {
+			width: 22em;
+			font-size: 200%;
+		}
+		</style>
 	</head>
 	<body class="<?php get_slot('page_classes') ?>">
-		<div id="masthead"><?php /* a href="http://ie.movember.com/mospace/421230" id="movember"><img src="/assets/uploads/peachy-mo.png" width="31" height="23" alt="Gimme mo money for Movember!"></a */ ?><a href="/">stereochro<span>me</span></a></div>
+		<div id="masthead"><a href="<?php le() ?>">stereochro<span>me</span></a></div>
 		<div id="outer1">
 			<div id="content">
 				<?php if (is_naked_day(time())) { ?>
 					<p>[To know more about why styles are disabled on this
-					website visit the <a href="http://naked.dustindiaz.com"
+					website visit the <a href="http://naked.dustindiaz.com/"
 					title="Web Standards Naked Day Host Website">Annual CSS
 					Naked Day</a> website for more information.]</p>
 				<?php } ?>
