@@ -32,6 +32,7 @@ function routes() {
 	$r->route('/weblog/{year}-{month}', array('_view' => 'month'));
 
 	$r->defaults(array('_handler' => 'Page'));
+	$r->route('/sitemap', array('_view' => 'sitemap'));
 	$r->route('/{slug};source', array('_view' => 'source'));
 	$r->route('/{slug};edit', array('_view' => 'edit'));
 	$r->route('/{slug}', array('_view' => 'view'));

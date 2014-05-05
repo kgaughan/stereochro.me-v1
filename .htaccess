@@ -1,5 +1,6 @@
 RewriteEngine On
 RewriteBase /
+RewriteRule ^\.well-known/.*   -                [L]
 RewriteRule ^assets/.*         -                [L]
 RewriteRule ^id/.*             -                [L]
 RewriteRule ^favicon\.ico      -                [L]

@@ -9,6 +9,15 @@ class PageData extends DAO {
 			', compact('slug'));
 	}
 
+	public static function get_sitemap() {
+		return DAO::query("
+			SELECT slug, title, time_c, time_m
+			FROM   pages
+			WHERE  slug <> ''
+			ORDER BY slug ASC
+			", array());
+	}
+
 	public static function save($slug, $title, $content, $style, $user_id) {
 		$params = array(
 			'slug' => $slug,

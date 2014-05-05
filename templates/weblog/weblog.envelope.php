@@ -65,18 +65,4 @@ end_slot();
 <?php echo $generated_content ?>
 
 <?php start_slot('post_body') ?>
-<script type="text/javascript">
-//<![CDATA[
-(function() {
-	var links = document.getElementsByTagName('a');
-	var query = '?';
-	for (var i = 0; i < links.length; i++) {
-		if (links[i].href.indexOf('#disqus_thread') >= 0) {
-			query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
-		}
-	}
-	document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/stereochrome/get_num_replies.js' + query + '"></' + 'script>');
-})();
-//]]>
-</script>
 <?php end_slot_append() ?>

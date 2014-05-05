@@ -3,8 +3,9 @@
 *.xcf
 .svn
 .bzr
-tests
+.git
+.gitignore
+.bzrignore
 deployment
 documentation
-.bzrignore
-assets/uploads
+tests

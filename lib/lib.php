@@ -41,6 +41,22 @@ function google_fonts() {
 	}
 }
 
+function is_naked_day($now) {
+	$y = gmdate('Y', $now);
+	// The 7th is our fallback if neither the 5th or 9th work.
+	foreach (array(5, 9, 7) as $try) {
+		$day_of_week = gmdate('N', gmmktime(0, 0, 0, 4, $try, $y));
+		// Best if it's a Tuesday, Wednesday, or Thursday.
+		if ($day_of_week >= 2 && $day_of_week <= 4) {
+			$d = $try;
+			break;
+		}
+	}
+	$start = gmmktime(-12, 0, 0, 4, $d, $y);
+	$end = gmmktime(36, 0, 0, 4, $d, $y);
+	return $now >= $start && $now <= $end;
+}
+
 function generate_link_embed($link) {
 	list($unhandled, $result) = trigger_event('render_link', $link);
 	return $unhandled ? false : $result;
@@ -52,4 +68,12 @@ function ts($fmt, $ts) {
 
 function dbts($ts) {
 	return ts('Y-m-d H:i:s', $ts);
+}
+
+function get_via_host($url) {
+	$host = parse_url($url, PHP_URL_HOST);
+	if (substr($host, 0, 4) == 'www.') {
+		$host = substr($host, 4);
+	}
+	return $host;
 }

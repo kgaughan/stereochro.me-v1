@@ -40,4 +40,8 @@ class PageHandler extends AFK_HandlerBase {
 			$ctx->redirect();
 		}
 	}
+
+	public function on_get_sitemap(AFK_Context $ctx) {
+		$ctx->sitemap = PageData::get_sitemap();
+	}
 }

@@ -1,0 +1,59 @@
+==================================================================
+https://keybase.io/talideon
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://stereochro.me
+  * I am talideon (https://keybase.io/talideon) on keybase.
+  * I have a public key with fingerprint 59C0 C696 FC51 A3B6 ADE9  1408 682D 43CC CF9F 6473
+
+To claim this, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "59c0c696fc51a3b6ade91408682d43cccf9f6473",
+            "host": "keybase.io",
+            "key_id": "682d43cccf9f6473",
+            "uid": "2478a931b43c7f37256bfc5dca344a00",
+            "username": "talideon"
+        },
+        "service": {
+            "hostname": "stereochro.me",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1396718293,
+    "expire_in": 157680000,
+    "prev": "b134872a7c10a9b39f5fc6e079367c40b8b5c2bc634a1a3d8c2e1ac2c6afb36e",
+    "seqno": 3,
+    "tag": "signature"
+}
+
+with the aforementioned key, yielding the PGP signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG v1.4.14 (GNU/Linux)
+
+owFtkc9qFTEUxserFiwI9gUU4q6OZWaSSSYDovjvAXStl+TkzL3BOhkz6W3LpWtd
+CkLpruIbKLhx5b6iXQi+gBtxI7gXk1J3ZhPOOb/zfeckLy+ezSZr8+t3Pn05NOOZ
+o4+/dfbwVvtnSbQzu6Rdkid4cnW2n6EfvO0DaUktoQAueQd1qajmyqAsWdHwpjKM
+AkAnO84EJTmZuzF1RBmtRtywLuZiMLUmZv/Db50UKiYaJWmpY1V0VFQ119HMgKKM
+qaJI4Ii+V08x0kFtWoOuJ3s5idmFBUwzJ+tTYgzo0cHcu40Y52TwLjhwm7E0D2Fo
+U2fYHRK6jXp6KjLVtjdx8diwQD/a6NCWkYRgk2pJJRdlU0maE9wZrMepTUQteFPE
+k2xwESV1SVkjKiWgLJTUVHZ1BxwLISkXwArd6BoqDZwyFd/TNFBhqaACrjpNeRp4
+xGe9I210CmqWFrKzXoUtj2Rv9cX9c9naJFs5P0lfl61euPTvQx/9yA4fby+fr9fX
+blx+t37715sPV+5+fuWz12+/7RwfH9z7+iDP/Pub338erexf/Qs=
+=k3W1
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/talideon
+
+==================================================================
+

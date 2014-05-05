@@ -1,6 +1,6 @@
 <?php
 class FlashEmbedPlugin extends Plugin {
-	
+
 	protected function get_events() {
 		return array(
 			'render_link',
@@ -18,8 +18,8 @@ class FlashEmbedPlugin extends Plugin {
 			return array(false, '');
 		}
 		$url = $attrs['href'];
-		$width = isset($attrs['width']) ? $attrs['width'] : 400;
-		$height = isset($attrs['height']) ? $attrs['height'] : 400;
+		$width = isset($attrs['width']) ? $attrs['width'] : 640;
+		$height = isset($attrs['height']) ? $attrs['height'] : 385;
 		unset($attrs['href'], $attrs['width'], $attrs['height']);
 
 		return array(false, $this->generate_flash_embed($url, $width, $height, $attrs));
@@ -52,24 +52,24 @@ class FlashEmbedPlugin extends Plugin {
 
 	private function generate_movie_embed($link, $width=null, $height=null) {
 		static $patterns = array(
-			'http://(?:www\.)?youtube\.com/watch\?v=([-A-Za-z0-9_]{11,})' => array(
-				'pattern' => "http://www.youtube.com/v/%s&rel=1",
+			'https?://(?:www\.)?youtube\.com/watch\?v=([-A-Za-z0-9_]{11,})' => array(
+				'pattern' => "//www.youtube.com/v/%s&rel=1",
 				'width' => 640,
 				'height' => 385),
-			'http://video\.google\.com/videoplay\?docid=(-?\d+)' => array(
-				'pattern' => "http://video.google.com/googleplayer.swf?hl=en&docId=%s",
+			'https?://video\.google\.com/videoplay\?docid=(-?\d+)' => array(
+				'pattern' => "//video.google.com/googleplayer.swf?hl=en&docId=%s",
 				'width' => 640,
 				'height' => 385),
-			'http://(?:www\.)?vimeo\.com/(\d+)' => array(
-				'pattern' => "http://www.vimeo.com/moogaloop.swf?clip_id=%s",
+			'https?://(?:www\.)?vimeo\.com/(\d+)' => array(
+				'pattern' => "//www.vimeo.com/moogaloop.swf?clip_id=%s",
 				'width' => 640,
 				'height' => 385),
-			'http://(?:www\.)?gametrailers\.com/video/[^/]+/(\d+)' => array(
-				'pattern' => "http://www.gametrailers.com/remote_wrap.php?mid=%s",
+			'https?://(?:www\.)?gametrailers\.com/video/[^/]+/(\d+)' => array(
+				'pattern' => "//www.gametrailers.com/remote_wrap.php?mid=%s",
 				'width' => 640,
 				'height' => 385),
-			'http://(?:www\.)?dailymotion\.com/video/([a-z0-9]+)' => array(
-				'pattern' => "http://www.dailymotion.com/swf/%s",
+			'https?://(?:www\.)?dailymotion\.com/video/([a-z0-9]+)' => array(
+				'pattern' => "//www.dailymotion.com/swf/%s",
 				'width' => 640,
 				'height' => 385));
 

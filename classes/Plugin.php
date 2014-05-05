@@ -1,6 +1,6 @@
 <?php
 /**
- * Basic implementation of AFK_Plugin that supports pulling settings in from 
+ * Basic implementation of AFK_Plugin that supports pulling settings in from
  * the database.
  */
 abstract class Plugin extends AFK_Plugin {
