@@ -97,7 +97,7 @@ class WeblogHandler extends AFK_HandlerBase {
 				cache_remove('weblog:summary');
 			}
 			$ctx->allow_rendering(false);
-			$ctx->redirect();
+			$ctx->see_other();
 		}
 	}
 
@@ -112,7 +112,7 @@ class WeblogHandler extends AFK_HandlerBase {
 			cache_remove('weblog:latest');
 			cache_remove('weblog:' . $ctx->id);
 			$ctx->allow_rendering(false);
-			$ctx->redirect();
+			$ctx->see_other();
 		}
 	}
 

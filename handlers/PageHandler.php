@@ -37,7 +37,7 @@ class PageHandler extends AFK_HandlerBase {
 			PageData::save($ctx->slug, $ctx->title, $ctx->content, $ctx->style, Users::current()->get_id());
 			cache_remove('page:' . $ctx->REQUEST_URI);
 			$ctx->allow_rendering(false);
-			$ctx->redirect();
+			$ctx->see_other();
 		}
 	}
 
