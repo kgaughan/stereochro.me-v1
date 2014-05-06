@@ -1,11 +1,9 @@
 *~
 .*.sw?
 *.xcf
-.svn
-.bzr
 .git
 .gitignore
-.bzrignore
 deployment
 documentation
 tests
+.externals
