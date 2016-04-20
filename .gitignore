@@ -1,3 +1,6 @@
 /deployment/production.target
 /deployment/configurations/production
 /site-config.php
+.*.sw?
+*.orig
+*~

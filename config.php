@@ -4,6 +4,11 @@ if (file_exists(APP_ROOT . '/site-config.php')) {
 } else {
 	require APP_ROOT . '/deployment/configurations/default.php';
 }
+// Pull in defaults depending on the environment.
+AFK::include_if_exists('defaults/' . strtolower(STATUS) . '.php');
+
+define('APP_VERSION', '0.0.0');
+define('WITH_LOGGING', STATUS == 'LIVE' || STATUS == 'STAGING');
 
 AFK::ensure_constants(array(
 	'PAGE_DATE' => 'G:i e \o\n F jS, Y',
@@ -43,11 +48,7 @@ function init() {
 	error_reporting(E_ALL);
 
 	AFK::load_helper('core', 'events', 'forms', 'html', 'slots', 'markdown', 'smartypants', 'cache');
-
-	$plugins = array('flashembed', 'javaembed', 'urchin', 'prettify');
-	AFK_Plugin::load(APP_ROOT . '/plugins', $plugins);
-
-	// cache_install(new AFK_Cache_PDO(DAO::get_connection(), 'output_cache'));
+	AFK_Plugin::load(APP_ROOT . '/plugins', array('flashembed', 'javaembed', 'urchin', 'prettify'));
 
 	Users::set_implementation(new Users());
 	Users::set_realm(AUTH_REALM);
