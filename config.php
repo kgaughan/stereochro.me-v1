@@ -6,13 +6,12 @@ if (file_exists(APP_ROOT . '/site-config.php')) {
 }
 
 AFK::ensure_constants(array(
-	'SITE_TIMEZONE' => 'UTC',
-	'PAGE_DATE' => 'G:i \o\n F jS, Y',
+	'PAGE_DATE' => 'G:i e \o\n F jS, Y',
 	'PAGE_LIMIT' => 40,
 	'WEBLOG_TITLE' => 'My Weblog',
 	'WEBLOG_SUBTITLE' => '',
 	'WEBLOG_AUTHOR' => '',
-	'WEBLOG_COPYRIGHT' => 'Copyright (c) ' . date('Y')));
+	'WEBLOG_COPYRIGHT' => 'Copyright (c) ' . gmdate('Y')));
 
 function routes() {
 	$r = new AFK_Routes(array(
@@ -42,7 +41,7 @@ function routes() {
 
 function init() {
 	error_reporting(E_ALL);
-	date_default_timezone_set(SITE_TIMEZONE);
+
 	AFK::load_helper('core', 'events', 'forms', 'html', 'slots', 'markdown', 'smartypants', 'cache');
 
 	$plugins = array('flashembed', 'javaembed', 'urchin', 'prettify');

@@ -41,8 +41,8 @@ if (cache('weblog:summary')) {
 				echo '<dd>&nbsp;</dd>';
 			}
 		}
-		echo '<dd><a title="', date('F Y', $ts), '; entries: ', $r['n'], '" href="';
-		le('weblog/' . date('Y-m', $ts));
+		echo '<dd><a title="', gmdate('F Y', $ts), '; entries: ', $r['n'], '" href="';
+		le('weblog/' . gmdate('Y-m', $ts));
 		echo '">', $r['n'], '</a></dd>';
 		$last_month = $m;
 	}

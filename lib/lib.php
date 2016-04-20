@@ -67,7 +67,7 @@ function ts($fmt, $ts) {
 }
 
 function dbts($ts) {
-	return ts('Y-m-d H:i:s', $ts);
+	return gmdate('Y-m-d H:i:s', $ts);
 }
 
 function get_via_host($url) {

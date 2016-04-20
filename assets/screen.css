@@ -139,10 +139,11 @@ ul#nav li, ul#archive-summary li {
 	padding: 0 1ex 0 0;
 	float: left;
 }
-ul#nav li:after, ul#archive-summary li:after {
+ul#nav li + li:before,
+ul#archive-summary li + li:before {
 	color: #CF9B88;
 	content: /*"\2767"*/"\223C";
-	padding: 0 0 0 1ex;
+	padding: 0 1ex 0 0;
 }
 
 dl#archive-summary {
@@ -235,6 +236,12 @@ div#preview {
 div#preview:before {
 	content: "Preview:";
 	font-weight: bold;
+	padding-bottom: 1em;
+	display: block;
+}
+
+div#preview .entry {
+	padding-left: 0;
 }
 
 #metadata {

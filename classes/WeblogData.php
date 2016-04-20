@@ -65,8 +65,8 @@ class WeblogData extends DAO {
 	}
 
 	public static function get_entries_for_month($year, $month) {
-		$start = dbts(mktime(0, 0, 0, $month, 1, $year));
-		$end = dbts(mktime(0, 0, 0, $month + 1, 1, $year));
+		$start = dbts(gmmktime(0, 0, 0, $month, 1, $year));
+		$end = dbts(gmmktime(0, 0, 0, $month + 1, 1, $year));
 
 		return DAO::query('
 			SELECT   id, time_c, link, title, via, note

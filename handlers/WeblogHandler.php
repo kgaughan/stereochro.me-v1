@@ -138,7 +138,7 @@ class WeblogHandler extends AFK_HandlerBase {
 		if (!$entries->valid()) {
 			$ctx->not_found();
 		}
-		$ctx->ts = mktime(0, 0, 0, $ctx->month, 1, $ctx->year);
+		$ctx->ts = gmmktime(0, 0, 0, $ctx->month, 1, $ctx->year);
 		$ctx->entries = $entries;
 	}
 }
