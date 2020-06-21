@@ -50,7 +50,6 @@ class WeblogHandler extends AFK_HandlerBase {
 				$link = $entry->link();
 				$link->rel = 'alternate';
 				$link->type = 'text/html';
-				$link->href = $entry_link;
 				$link->href = empty($e['link']) ? $entry_link : $e['link'];
 
 				// So there'll always be a link back.
